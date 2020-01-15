@@ -38,16 +38,13 @@
  */
 package nsgl.integer;
 
-import nsgl.random.raw.JavaGenerator;
-import nsgl.random.raw.RawGenerator;
-
 /**
  * <p>Title: RouletteInt</p>
  *
  * <p>Description: Generates integer numbers following a Weighted probability density (Roulette)</p>
  *
  */
-public class RouletteGenerator  extends Random{
+public class RouletteGenerator implements Random{
 	/**
 	 * Probability of generating an integer number [0,length(density))
 	 */
@@ -65,27 +62,13 @@ public class RouletteGenerator  extends Random{
 	 * p(i) = (n-i)/sum(1,n)
 	 * @param n number of different integer values that can be generated...
 	 */
-	public RouletteGenerator(int n, RawGenerator g) { this( equaldensity(n), g ); }
-	
-	/**
-	 * Creates an integer number generator [0,n) with the following probability density:
-	 * p(i) = (n-i)/sum(1,n)
-	 * @param n number of different integer values that can be generated...
-	 */
 	public RouletteGenerator(int n) { this( equaldensity(n) ); }
 	
 	/**
 	 * Creates an integer number generator with the given probability density
 	 * @param density Probability of generating an integer number [0,length(density))
 	 */
-	public RouletteGenerator(double[] density) { this( density, new JavaGenerator() ); }
-	
-	/**
-	 * Creates an integer number generator with the given probability density
-	 * @param density Probability of generating an integer number [0,length(density))
-	 */
-	public RouletteGenerator(double[] density, RawGenerator g ) {
-		super(g);
+	public RouletteGenerator(double[] density) {
 		this.density = density;
 	}
 	
@@ -95,7 +78,7 @@ public class RouletteGenerator  extends Random{
 	 */
 	@Override
 	public int next() {
-		double x = g.next();
+		double x = getRaw().next();
 		int length = density.length;
 		int i = 0;
 		while (i < length && x >= density[i]) {

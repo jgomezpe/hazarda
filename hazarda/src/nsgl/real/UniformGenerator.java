@@ -38,8 +38,6 @@
  */
 package nsgl.real;
 
-import nsgl.random.raw.RawGenerator;
-
 /**
  * <p>Title: UniformReal</p>
  *
@@ -59,18 +57,6 @@ public class UniformGenerator extends LocationScaleGenerator{
      */
     public UniformGenerator(double minVal, double maxVal) { super(minVal, maxVal-minVal);  }
 
-    /**
-     * Constructor: Creates a uniform random number generator that generates numbers in the interval [0, 1)
-     */
-    public UniformGenerator( RawGenerator g){ super(g); }
-
-    /**
-     * Constructor: Creates a uniform random number generator that generates numbers in the interval [minVal, maxVal)
-     * @param minVal Inf limit
-     * @param maxVal Sup Limit
-     */
-    public UniformGenerator(double minVal, double maxVal, RawGenerator g) { super(minVal, maxVal-minVal, g);  }
-
 	@Override
-	public double std(){ return g.next(); }
+	public double std(){ return getRaw().next(); }
 }

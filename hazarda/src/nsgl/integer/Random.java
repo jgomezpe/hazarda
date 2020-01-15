@@ -38,7 +38,6 @@
  */
 package nsgl.integer;
 
-import nsgl.random.raw.RawGenerator;
 import nsgl.random.raw.UsesRawGenerator;
 
 /**
@@ -47,19 +46,13 @@ import nsgl.random.raw.UsesRawGenerator;
  * <p>Description: Generates integer values randomly.</p>
  *
  */
-public abstract class Random extends UsesRawGenerator{	
-	/**
-	 * Creates an object that uses the provided RawGenerator
-	 * @param g RawGenerator that the object will use
-	 */
-	public Random( RawGenerator g ){ super(g); }
-	
+public interface Random extends UsesRawGenerator{	
     /**
      * Returns a random double number
      * @param x Inverse value (cumulative probability)
      * @return A random double number
      */
-    public abstract int next();
+    int next();
 	
 	/**
 	 * Returns a set of random integer numbers
@@ -67,7 +60,7 @@ public abstract class Random extends UsesRawGenerator{
 	 * @param offset Initial position for storing the generated integers
 	 * @param m The total number of integer numbers
 	 */
-	public void generate(int[] v, int offset, int m) {
+	default void generate(int[] v, int offset, int m) {
 	    for (int i = 0; i < m; i++) v[i+offset] = next();
 	}
 	
@@ -76,7 +69,7 @@ public abstract class Random extends UsesRawGenerator{
 	 * @param m The total number of random integer numbers
 	 * @return A set of m random integer numbers
 	 */
-	public int[] generate(int m) {
+	default int[] generate(int m) {
 		int[] v = null;
 		if (m > 0) {
 		    v = new int[m];

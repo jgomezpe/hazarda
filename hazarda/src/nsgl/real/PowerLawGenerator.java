@@ -38,9 +38,6 @@
  */
 package nsgl.real;
 
-import nsgl.random.raw.JavaGenerator;
-import nsgl.random.raw.RawGenerator;
-
 /**
  * <p>Title: PowerLaw</p>
  *
@@ -109,46 +106,20 @@ public class PowerLawGenerator extends LocationScaleGenerator{
      * @param b <i>b</i> parameter of the Generalized power law 
      */
 	public PowerLawGenerator( double alpha, double b ){ this( alpha, b, 0.0 ); }
-	
-    /**
+
+	/**
      * Creates a generalized power law
      * @param alpha <i>alpha</i> parameter of the Generalized power law 
      * @param b <i>b</i> parameter of the Generalized power law 
      * @param c <i>c</i> parameter of the Generalized power law 
      */
-	public PowerLawGenerator( double alpha, double b, double c ){ this(alpha, b, c, new JavaGenerator()); }
-
-    /**
-     * Creates a Standard generalized power law <i>alpha=2.0, b=1.0, c=0.0</i>
-     */
-	public PowerLawGenerator(RawGenerator g){ this( 2.0, g ); }
-	
-    /**
-     * Creates a generalized power law <i>b=1.0, c=0.0</i>
-     * @param alpha <i>alpha</i> parameter of the Generalized power law 
-     */
-	public PowerLawGenerator( double alpha, RawGenerator g ){ this( alpha, 1.0, g ); }
-
-    /**
-     * Creates a generalized power law <i>c=0.0</i>
-     * @param alpha <i>alpha</i> parameter of the Generalized power law 
-     * @param b <i>b</i> parameter of the Generalized power law 
-     */
-	public PowerLawGenerator( double alpha, double b, RawGenerator g ){ this( alpha, b, 0.0, g ); }
-	
-    /**
-     * Creates a generalized power law
-     * @param alpha <i>alpha</i> parameter of the Generalized power law 
-     * @param b <i>b</i> parameter of the Generalized power law 
-     * @param c <i>c</i> parameter of the Generalized power law 
-     */
-	public PowerLawGenerator( double alpha, double b, double c, RawGenerator g ){
-		super(c, g);
+	public PowerLawGenerator( double alpha, double b, double c ){
+		super(c);
 		b *= (alpha-1.0);
 		if( b==1.0 ) p = new One(); else p = new NoOnePL(b);
     	if( alpha==2.0 ) exp = new Fast(); else exp = new Pow(alpha);		
     }
 
 	@Override
-	public double std(){ return exp.apply(1.0-g.next()); }    
+	public double std(){ return exp.apply(1.0-getRaw().next()); }    
 }

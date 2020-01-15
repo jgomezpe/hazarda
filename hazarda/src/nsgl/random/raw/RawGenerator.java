@@ -38,6 +38,8 @@
  */
 package nsgl.random.raw;
 
+import nsgl.cast.CastServer;
+
 /**
  * <p>Title: RawGenerator</p>
  *
@@ -97,5 +99,23 @@ public interface RawGenerator{
 			raw(v, 0, m);
 		}
 		return v;
-	}	
+	}
+	
+// Service	
+	/**
+	 * Obtains a comparator method for the given object
+	 * @param obj Object that will get its comparator method
+	 * @return A comparator method for the given object
+	 */
+	static RawGenerator generator( Object obj ){
+		if( CastServer.service(Object.class,RawGenerator.class) == null ) CastServer.setService(Object.class, RawGenerator.class, new JavaGenerator());
+		return (RawGenerator)CastServer.service(obj,RawGenerator.class);
+	}
+	
+	/**
+	 * Adds a Comparable casting method for the given object 
+	 * @param caller Object that will register its casting method
+	 * @param cast Casting method
+	 */
+	static void addCast( Object caller, RawGenerator cast ){ CastServer.setService(caller, RawGenerator.class, cast); }		
 }

@@ -44,21 +44,12 @@ package nsgl.random.raw;
  * <p>Description: Abstract object that uses a rawGenerator for generating random values.</p>
  *
  */
-public class UsesRawGenerator {
-	/**
-	 * RawGenerator used by the object
-	 */
-	protected RawGenerator g=null;
-	
-	/**
-	 * Creates an object that uses the provided RawGenerator
-	 * @param g RawGenerator that the object will use
-	 */
-	public UsesRawGenerator( RawGenerator g ){ this.g= g; }
-	
+public interface UsesRawGenerator {
 	/**
 	 * Sets the RawGenerator  
 	 * @param g RawGenerator used by the object 
 	 */
-	public void setRaw( RawGenerator g ){ this.g = g; }
+	default void setRaw( RawGenerator g ){ RawGenerator.addCast(this,g); }
+	
+	default RawGenerator getRaw(){ return RawGenerator.generator(this); }
 }

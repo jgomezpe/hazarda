@@ -38,8 +38,6 @@
  */
 package nsgl.real;
 
-import nsgl.random.raw.JavaGenerator;
-import nsgl.random.raw.RawGenerator;
 import nsgl.random.raw.UsesRawGenerator;
 
 /**
@@ -48,7 +46,7 @@ import nsgl.random.raw.UsesRawGenerator;
  * <p>Description: An abstract random distribution that can be located and scaled.</p>
  *
  */
-public abstract class LocationScaleGenerator extends UsesRawGenerator implements Random{
+public abstract class LocationScaleGenerator implements UsesRawGenerator, Random{
 	/**
 	 * Scalable operation of the random distribution
 	 * @author Jonatan Gomez
@@ -121,36 +119,17 @@ public abstract class LocationScaleGenerator extends UsesRawGenerator implements
 	public LocationScaleGenerator() { this( 0.0, 1.0 ); 	}
 	
 	/**
-	 * Creates a standard location-scale distribution (shift-value <i>miu=0</i> and scale factor <i>sigma=1.0</i>)  
-	 */
-	public LocationScaleGenerator(RawGenerator g) { this( 0.0, 1.0, g ); }
-	
-	/**
 	 * Creates a location-scale distribution whit scale factor <i>sigma=1.0</i> and the given shift-value <i>miu</i> 
 	 * @param miu Location of the distribution  
 	 */
 	public LocationScaleGenerator( double miu ) { this( 0.0, 1.0 ); }
 	
 	/**
-	 * Creates a location-scale distribution whit scale factor <i>sigma=1.0</i> and the given shift-value <i>miu</i> 
-	 * @param miu Location of the distribution  
-	 */
-	public LocationScaleGenerator(double miu,  RawGenerator g) { this( 0.0, 1.0, g ); }
-	
-	/**
 	 * Creates a location-scale distribution whit the given shift-value <i>miu</i> and scale factor <i>sigma</i>
 	 * @param miu Location of the distribution  
 	 * @param sigma Scale of the distribution  
 	 */
-	public LocationScaleGenerator( double miu, double sigma ) { this( miu, sigma, new JavaGenerator()); }
-
-	/**
-	 * Creates a location-scale distribution whit the given shift-value <i>miu</i> and scale factor <i>sigma</i>
-	 * @param miu Location of the distribution  
-	 * @param sigma Scale of the distribution  
-	 */
-	public LocationScaleGenerator( double miu, double sigma, RawGenerator g ) {
-		super(g);
+	public LocationScaleGenerator( double miu, double sigma ) {
 		l = (miu==0.0)?new Zero():new NoZero(miu);
 		p = (sigma==1.0)?new One():new NoOne(sigma);
 	}

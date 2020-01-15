@@ -38,8 +38,6 @@
  */
 package nsgl.bit;
 
-import nsgl.random.raw.JavaGenerator;
-import nsgl.random.raw.RawGenerator;
 import nsgl.random.raw.UsesRawGenerator;
 
 /**
@@ -48,16 +46,11 @@ import nsgl.random.raw.UsesRawGenerator;
  * <p>Description: Generates boolean values randomly.</p>
  *
  */
-public class Random extends UsesRawGenerator{
+public class Random implements UsesRawGenerator{
 	/**
 	 * Probability of generating a <i>false</i> value
 	 */
 	protected double falseProbability;
-	
-	/**
-	 * Creates a boolean generator with the same probability of generating a <i>true</i> and <i>false</i> value
-	 */
-	public Random( RawGenerator g ){ this(0.5,g); }
 	
 	/**
 	 * Creates a boolean generator with the same probability of generating a <i>true</i> and <i>false</i> value
@@ -69,23 +62,13 @@ public class Random extends UsesRawGenerator{
 	 * the probability of generating a <i>true</i> value
 	 * @param falseProbability Probability of generating a <i>false</i> value
 	 */
-	public Random(double falseProbability, RawGenerator g ){
-		super(g);
-		this.falseProbability = falseProbability; 
-	}
-	
-	/**
-	 * Creates a boolean generator with the given probability of generating a <i>false</i> value (1.0-falseProbability) is
-	 * the probability of generating a <i>true</i> value
-	 * @param falseProbability Probability of generating a <i>false</i> value
-	 */
-	public Random(double falseProbability){ this(falseProbability, new JavaGenerator()); }
+	public Random(double falseProbability ){ this.falseProbability = falseProbability; }
 	
 	/**
 	 * Produces a boolean value according to the stored probability distribution
 	 * @return A boolean value according to the stored probability distribution
 	 */
-	public boolean next(){ return g.next()>falseProbability; }
+	public boolean next(){ return getRaw().next()>falseProbability; }
 
 	/**
 	 * Returns a set of random boolean values

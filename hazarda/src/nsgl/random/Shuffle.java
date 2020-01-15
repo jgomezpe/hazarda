@@ -40,6 +40,7 @@ package nsgl.random;
 
 import nsgl.integer.UniformGenerator;
 import nsgl.random.raw.RawGenerator;
+import nsgl.random.raw.UsesRawGenerator;
 
 //
 // Unalcol Random generation Pack 1.0 by Jonatan Gomez-Perdomo
@@ -97,13 +98,21 @@ import nsgl.random.raw.RawGenerator;
  * <p>Description: Shuffles an array (vector) of objects</p>
  *
  */
-public class Shuffle{
+public class Shuffle implements UsesRawGenerator{
 	/**
 	 * Inner generator of indices for shuffling the set of objects
 	 */
 	protected static UniformGenerator ig = new UniformGenerator(0);
 	
-	public static void setRawGenerator( RawGenerator g ) { ig = new UniformGenerator(0,g); }
+	/**
+	 * Sets the RawGenerator  
+	 * @param g RawGenerator used by the object 
+	 */
+	@Override
+	public void setRaw( RawGenerator g ){ RawGenerator.addCast(ig,g); }
+	
+	@Override
+	public RawGenerator getRaw(){ return RawGenerator.generator(ig); }
 	
 	/**
 	 * Generates an array with all the integers in the interval [0,n) stored in a random fashion

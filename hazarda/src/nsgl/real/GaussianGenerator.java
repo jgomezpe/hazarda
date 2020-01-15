@@ -65,26 +65,9 @@ public class GaussianGenerator extends LocationScaleGenerator{
    */
   public GaussianGenerator( double miu, double sigma ){  super(miu,sigma);  }
 
-  /**
-   * Constructor: Creates a Standard Gaussian Number Generator G(0,1)
-   */
-  public GaussianGenerator( RawGenerator g ){  super(g);  }
-
-  /**
-   * Constructor: Creates a Gaussian Number Generator G(miu,1)
-   * @param miu Mean
-   */
-  public GaussianGenerator( double miu, RawGenerator g ){  super(miu, g);  }
-  
-  /**
-   * Constructor: Creates a Gaussian Number Generator G(miu,sigma)
-   * @param miu Mean
-   * @param sigma standard deviation
-   */
-  public GaussianGenerator( double miu, double sigma, RawGenerator g ){  super(miu,sigma,g);  }
-
   @Override
   public double std() {
+	  RawGenerator g = getRaw();
       double x,y;
       double r;
       do {

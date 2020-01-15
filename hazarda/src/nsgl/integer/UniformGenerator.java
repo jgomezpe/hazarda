@@ -38,17 +38,13 @@
  */
 package nsgl.integer;
 
-import nsgl.random.raw.JavaGenerator;
-import nsgl.random.raw.RawGenerator;
-
-
 /**
  * <p>Title: UniformInt</p>
  *
  * <p>Description: Generates integer numbers following an uniform probability distribution</p>
  *
  */
-public class UniformGenerator extends Random{
+public class UniformGenerator implements Random{
 	/**
 	 * Low Limit
 	 */
@@ -63,12 +59,6 @@ public class UniformGenerator extends Random{
 	 * Creates a uniform integer number generator in the interval [0,max)
 	 * @param max Sup Limit
 	 */
-	public UniformGenerator(int max, RawGenerator g) { this( 0, max, g ); }
-	
-	/**
-	 * Creates a uniform integer number generator in the interval [0,max)
-	 * @param max Sup Limit
-	 */
 	public UniformGenerator(int max){ this( 0, max ); }
 	
 	/**
@@ -76,18 +66,10 @@ public class UniformGenerator extends Random{
 	 * @param min Low limit
 	 * @param max Sup limit
 	 */
-	public UniformGenerator(int min, int max, RawGenerator g ) {
-		super(g);
+	public UniformGenerator(int min, int max) {
 		this.min = min;
 		this.length = max - min;
 	}
-	
-	/**
-	 * Creates a uniform integer number generator in the interval [min,max)
-	 * @param min Low limit
-	 * @param max Sup limit
-	 */
-	public UniformGenerator(int min, int max){ this(min,max, new JavaGenerator()); }
 	
 	/**
 	 * Fixes the uniform integer number generator to the interval [0,max)
@@ -115,5 +97,5 @@ public class UniformGenerator extends Random{
 	 * @return The integer number in the interval [min,max) associated to the real number x in [0,1)
 	 */
 	@Override
-	public int next() {	return (min + (int)(length*g.next()));	}
+	public int next() {	return (min + (int)(length*getRaw().next()));	}
 }
