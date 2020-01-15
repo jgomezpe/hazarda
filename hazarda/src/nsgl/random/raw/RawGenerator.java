@@ -117,5 +117,8 @@ public interface RawGenerator{
 	 * @param caller Object that will register its casting method
 	 * @param cast Casting method
 	 */
-	static void addCast( Object caller, RawGenerator cast ){ CastServer.setService(caller, RawGenerator.class, cast); }		
+	static void addCast( Object caller, RawGenerator cast ){
+		if( CastServer.service(Object.class,RawGenerator.class) == null ) CastServer.setService(Object.class, RawGenerator.class, new JavaGenerator());
+		if( CastServer.service(Object.class,RawGenerator.class) != cast ) CastServer.setService(caller, RawGenerator.class, cast); 
+	}		
 }
