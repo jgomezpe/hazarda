@@ -36,64 +36,41 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package nsgl.real.random;
+package nsgl.real;
 
 import nsgl.random.raw.RawGenerator;
 
 /**
- * <p>Title: Gaussian</p>
+ * <p>Title: UniformReal</p>
  *
- * <p>Description: Generates real number following a Gaussian distribution.</p>
+ * <p>Description: Generates random real numbers with uniform distribution.</p>
  *
  */
-public class Gaussian extends LocationScale{
-  /**
-   * Constructor: Creates a Standard Gaussian Number Generator G(0,1)
-   */
-  public Gaussian(){  super();  }
+public class UniformGenerator extends LocationScaleGenerator{
+    /**
+     * Constructor: Creates a uniform random number generator that generates numbers in the interval [0, 1)
+     */
+    public UniformGenerator(){ super(); }
 
-  /**
-   * Constructor: Creates a Gaussian Number Generator G(miu,1)
-   * @param miu Mean
-   */
-  public Gaussian( double miu ){  super(miu);  }
-  
-  /**
-   * Constructor: Creates a Gaussian Number Generator G(miu,sigma)
-   * @param miu Mean
-   * @param sigma standard deviation
-   */
-  public Gaussian( double miu, double sigma ){  super(miu,sigma);  }
+    /**
+     * Constructor: Creates a uniform random number generator that generates numbers in the interval [minVal, maxVal)
+     * @param minVal Inf limit
+     * @param maxVal Sup Limit
+     */
+    public UniformGenerator(double minVal, double maxVal) { super(minVal, maxVal-minVal);  }
 
-  /**
-   * Constructor: Creates a Standard Gaussian Number Generator G(0,1)
-   */
-  public Gaussian( RawGenerator g ){  super(g);  }
+    /**
+     * Constructor: Creates a uniform random number generator that generates numbers in the interval [0, 1)
+     */
+    public UniformGenerator( RawGenerator g){ super(g); }
 
-  /**
-   * Constructor: Creates a Gaussian Number Generator G(miu,1)
-   * @param miu Mean
-   */
-  public Gaussian( double miu, RawGenerator g ){  super(miu, g);  }
-  
-  /**
-   * Constructor: Creates a Gaussian Number Generator G(miu,sigma)
-   * @param miu Mean
-   * @param sigma standard deviation
-   */
-  public Gaussian( double miu, double sigma, RawGenerator g ){  super(miu,sigma,g);  }
+    /**
+     * Constructor: Creates a uniform random number generator that generates numbers in the interval [minVal, maxVal)
+     * @param minVal Inf limit
+     * @param maxVal Sup Limit
+     */
+    public UniformGenerator(double minVal, double maxVal, RawGenerator g) { super(minVal, maxVal-minVal, g);  }
 
-  @Override
-  public double std() {
-      double x,y;
-      double r;
-      do {
-          x = 2.0 * g.next() - 1.0;
-          y = 2.0 * g.next() - 1.0;
-          r = x * x + y * y;
-      } while (r >= 1.0);
-
-      double z = Math.sqrt( -2.0 * Math.log(r) / r);
-      return (y * z);
-  }
+	@Override
+	public double std(){ return g.next(); }
 }

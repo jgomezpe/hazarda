@@ -36,7 +36,7 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package nsgl.bit.random;
+package nsgl.bit;
 
 import nsgl.random.raw.JavaGenerator;
 import nsgl.random.raw.RawGenerator;
@@ -48,7 +48,7 @@ import nsgl.random.raw.UsesRawGenerator;
  * <p>Description: Generates boolean values randomly.</p>
  *
  */
-public class RandBit extends UsesRawGenerator{
+public class Random extends UsesRawGenerator{
 	/**
 	 * Probability of generating a <i>false</i> value
 	 */
@@ -57,19 +57,19 @@ public class RandBit extends UsesRawGenerator{
 	/**
 	 * Creates a boolean generator with the same probability of generating a <i>true</i> and <i>false</i> value
 	 */
-	public RandBit( RawGenerator g ){ this(0.5,g); }
+	public Random( RawGenerator g ){ this(0.5,g); }
 	
 	/**
 	 * Creates a boolean generator with the same probability of generating a <i>true</i> and <i>false</i> value
 	 */
-	public RandBit(){ this(0.5); }
+	public Random(){ this(0.5); }
 	
 	/**
 	 * Creates a boolean generator with the given probability of generating a <i>false</i> value (1.0-falseProbability) is
 	 * the probability of generating a <i>true</i> value
 	 * @param falseProbability Probability of generating a <i>false</i> value
 	 */
-	public RandBit(double falseProbability, RawGenerator g ){
+	public Random(double falseProbability, RawGenerator g ){
 		super(g);
 		this.falseProbability = falseProbability; 
 	}
@@ -79,7 +79,7 @@ public class RandBit extends UsesRawGenerator{
 	 * the probability of generating a <i>true</i> value
 	 * @param falseProbability Probability of generating a <i>false</i> value
 	 */
-	public RandBit(double falseProbability){ this(falseProbability, new JavaGenerator()); }
+	public Random(double falseProbability){ this(falseProbability, new JavaGenerator()); }
 	
 	/**
 	 * Produces a boolean value according to the stored probability distribution

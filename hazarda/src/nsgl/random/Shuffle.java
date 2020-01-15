@@ -38,7 +38,7 @@
  */
 package nsgl.random;
 
-import nsgl.integer.random.*;
+import nsgl.integer.UniformGenerator;
 import nsgl.random.raw.RawGenerator;
 
 //
@@ -101,9 +101,9 @@ public class Shuffle{
 	/**
 	 * Inner generator of indices for shuffling the set of objects
 	 */
-	protected static UniformInt ig = new UniformInt(0);
+	protected static UniformGenerator ig = new UniformGenerator(0);
 	
-	public static void setRawGenerator( RawGenerator g ) { ig = new UniformInt(0,g); }
+	public static void setRawGenerator( RawGenerator g ) { ig = new UniformGenerator(0,g); }
 	
 	/**
 	 * Generates an array with all the integers in the interval [0,n) stored in a random fashion

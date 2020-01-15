@@ -1,4 +1,6 @@
 /**
+ * <p>Random methods for bits.</p>
+ *
  * <p>Copyright: Copyright (c) 2019</p>
  *
  * <h3>License</h3>
@@ -36,45 +38,4 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package nsgl.generic.random;
-
-/**
- * <p>Title: RandGenerator</p>
- *
- * <p>Description: Random Generator Utility.</p>
- *
- */
-public interface RandObjGenerator<T>{
-	/**
-	 * Generates a random object of class <i>T</i>.
-	 * @return A random object of class <i>T</i>.
-	 */
-	T next();
-    
-	/**
-	 * generates a random objects array of class <i>T</i>.
-	 * @param v Array where objects will be stored.
-	 * @param offset Initial position in the array for the generated objects.
-	 * @param m The total number of random objects to be generated.
-	 * @return A set of random objects from the given array
-	 */
-	default T[] raw(T[] v, int offset, int m) {
-	    for (int i = 0; i < m; i++) v[i+offset] = next();
-	    return v;
-	}
-	
-	/**
-	 * Generates a random objects array of class <i>T</i>.
-	 * @param m The total number of random objects to be generated
-	 * @return A random objects array (size <i>m</i>) of class <i>T</i>.
-	 */
-	@SuppressWarnings("unchecked")
-	default T[] raw(int m) {
-		T[] v = null;
-		if (m > 0) {
-			v = (T[])new Object[m];
-			raw(v, 0, m);
-		}
-		return v;
-	}
-}
+package nsgl.bit;

@@ -36,52 +36,45 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package nsgl.real.random;
-
-import nsgl.bit.random.RandBit;
+package nsgl.generic.random;
 
 /**
- * <p>Title: Symmetric</p>
+ * <p>Title: RandGenerator</p>
  *
- * <p>Description: Generates random real numbers by combining a one side real random number distribution (for the value) and
- *  a boolean random distribution for the side.The one side distribution must be able to generate number in R+ = [0, inf)</p>
+ * <p>Description: Random Generator Utility.</p>
  *
  */
-public class Symmetric implements RandReal {
+public interface Random<T>{
 	/**
-	 * Boolean random distribution for the side.
+	 * Generates a random object of class <i>T</i>.
+	 * @return A random object of class <i>T</i>.
 	 */
-	protected RandBit side;
+	T next();
+    
 	/**
-	 * One side real random number distribution for values
+	 * generates a random objects array of class <i>T</i>.
+	 * @param v Array where objects will be stored.
+	 * @param offset Initial position in the array for the generated objects.
+	 * @param m The total number of random objects to be generated.
+	 * @return A set of random objects from the given array
 	 */
-	protected RandReal one_side;
-	
-	/**
-	 * Creates a symmetric real numbers random distribution with a side probability of 0.5 and a [0,1) uniform distribution, i.e., 
-	 * this distribution will generate uniform real numbers in the interval (-1, 1)  
-	 */
-	public Symmetric(){ this( new RandBit(), new UniformReal()); }
-	/**
-	 * Creates a symmetric real numbers random distribution with a side probability of 0.5 and the given one side distribution
-	 * @param one_side One side real random number distribution for values
-	 */
-	public Symmetric( RandReal one_side ){ this( new RandBit(), one_side ); }
-	
-	/**
-	 * Creates a symmetric real numbers random distribution with the given side and one side distribution
-	 * @param side Boolean random distribution for the side.
-	 * @param one_side One side real random number distribution for values
-	 */
-	public Symmetric( RandBit side, RandReal one_side ){
-		this.side = side;
-		this.one_side = one_side;
+	default T[] raw(T[] v, int offset, int m) {
+	    for (int i = 0; i < m; i++) v[i+offset] = next();
+	    return v;
 	}
 	
-   /**
-     * Returns a random double number
-     * @return A random double number
-     */
-    @Override
-    public double next(){ return side.next()?one_side.next():-one_side.next(); }  
+	/**
+	 * Generates a random objects array of class <i>T</i>.
+	 * @param m The total number of random objects to be generated
+	 * @return A random objects array (size <i>m</i>) of class <i>T</i>.
+	 */
+	@SuppressWarnings("unchecked")
+	default T[] raw(int m) {
+		T[] v = null;
+		if (m > 0) {
+			v = (T[])new Object[m];
+			raw(v, 0, m);
+		}
+		return v;
+	}
 }

@@ -36,78 +36,84 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package nsgl.integer.random;
+package nsgl.integer;
 
 import nsgl.random.raw.JavaGenerator;
 import nsgl.random.raw.RawGenerator;
 
+
 /**
- * <p>Title: RouletteInt</p>
+ * <p>Title: UniformInt</p>
  *
- * <p>Description: Generates integer numbers following a Weighted probability density (Roulette)</p>
+ * <p>Description: Generates integer numbers following an uniform probability distribution</p>
  *
  */
-public class RouletteInt  extends RandInt{
+public class UniformGenerator extends Random{
 	/**
-	 * Probability of generating an integer number [0,length(density))
+	 * Low Limit
 	 */
-	protected double[] density;
-	
-	protected static double[] equaldensity(int n) {
-		double[] density = new double[n];
-        double total = n * (n + 1) / 2.0;
-        for (int i = 0; i < n; i++) density[i] = (n - i) / total;
-        return density;
-	}
-	
-	/**
-	 * Creates an integer number generator [0,n) with the following probability density:
-	 * p(i) = (n-i)/sum(1,n)
-	 * @param n number of different integer values that can be generated...
-	 */
-	public RouletteInt(int n, RawGenerator g) { this( equaldensity(n), g ); }
-	
-	/**
-	 * Creates an integer number generator [0,n) with the following probability density:
-	 * p(i) = (n-i)/sum(1,n)
-	 * @param n number of different integer values that can be generated...
-	 */
-	public RouletteInt(int n) { this( equaldensity(n) ); }
-	
-	/**
-	 * Creates an integer number generator with the given probability density
-	 * @param density Probability of generating an integer number [0,length(density))
-	 */
-	public RouletteInt(double[] density) { this( density, new JavaGenerator() ); }
-	
-	/**
-	 * Creates an integer number generator with the given probability density
-	 * @param density Probability of generating an integer number [0,length(density))
-	 */
-	public RouletteInt(double[] density, RawGenerator g ) {
-		super(g);
-		this.density = density;
-	}
-	
-	/**
-	 * Generates an integer number following the associated density function
-	 * @return An integer number following the associated density function
-	 */
-	@Override
-	public int next() {
-		double x = g.next();
-		int length = density.length;
-		int i = 0;
-		while (i < length && x >= density[i]) {
-			x -= density[i];
-			i++;
-		}
-		return i;
-	}
+	protected int min;
 
 	/**
-	 * Defines the density function of the generated integers
-	 * @param density Probability of generating an integer number [0,length(density))
+	 * Interval Length
 	 */
-	public void setDensity(double[] density) { this.density = density; }
+	protected int length;
+	
+	/**
+	 * Creates a uniform integer number generator in the interval [0,max)
+	 * @param max Sup Limit
+	 */
+	public UniformGenerator(int max, RawGenerator g) { this( 0, max, g ); }
+	
+	/**
+	 * Creates a uniform integer number generator in the interval [0,max)
+	 * @param max Sup Limit
+	 */
+	public UniformGenerator(int max){ this( 0, max ); }
+	
+	/**
+	 * Creates a uniform integer number generator in the interval [min,max)
+	 * @param min Low limit
+	 * @param max Sup limit
+	 */
+	public UniformGenerator(int min, int max, RawGenerator g ) {
+		super(g);
+		this.min = min;
+		this.length = max - min;
+	}
+	
+	/**
+	 * Creates a uniform integer number generator in the interval [min,max)
+	 * @param min Low limit
+	 * @param max Sup limit
+	 */
+	public UniformGenerator(int min, int max){ this(min,max, new JavaGenerator()); }
+	
+	/**
+	 * Fixes the uniform integer number generator to the interval [0,max)
+	 * @param max Sup limit
+	 */
+	public void set( int max ){ set( 0, max ); }
+
+	/**
+	 * Fixes the uniform integer number generator to the interval [min,max)
+	 * @param min Low limit
+	 * @param max Sup limit
+	 */
+	public void set( int min, int max ){
+		if( min>max ){
+			int temp = min;
+			min=max;
+			max=temp;
+		}
+		this.min = min;
+		this.length = max-min; 
+	}
+	
+	/**
+	 * Generates the integer number in the interval [min,max) associated to the real number x in [0,1)
+	 * @return The integer number in the interval [min,max) associated to the real number x in [0,1)
+	 */
+	@Override
+	public int next() {	return (min + (int)(length*g.next()));	}
 }

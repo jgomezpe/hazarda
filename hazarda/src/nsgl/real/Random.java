@@ -36,7 +36,7 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package nsgl.real.random;
+package nsgl.real;
 
 /**
  * <p>Title: RandReal</p>
@@ -44,7 +44,7 @@ package nsgl.real.random;
  * <p>Description: Abstract random number generator.</p>
  *
  */
-public interface RandReal{
+public interface Random{
 
 	double next();
 	

@@ -38,8 +38,7 @@
  */
 package nsgl.generic.random;
 
-import nsgl.integer.random.RandInt;
-import nsgl.integer.random.UniformInt;
+import nsgl.integer.UniformGenerator;
 
 /**
  * <p>Title: RandObj</p>
@@ -47,7 +46,7 @@ import nsgl.integer.random.UniformInt;
  * <p>Description: A random generator for a predefined set of objects</p>
  *
  */
-public class PickObj<T> implements RandObjGenerator<T>{
+public class PickObj<T> implements Random<T>{
     /**
      * Set of predefined objects that can be randomly selected
      */
@@ -55,7 +54,7 @@ public class PickObj<T> implements RandObjGenerator<T>{
     /**
      * Objects density function
      */
-    protected RandInt g;
+    protected nsgl.integer.Random g;
 
     /**
      * Created a random generator of predefined objects
@@ -63,7 +62,7 @@ public class PickObj<T> implements RandObjGenerator<T>{
      */
     public PickObj(T[] objects) {
         this.objects = objects;
-        g = new UniformInt(this.objects.length);
+        g = new UniformGenerator(this.objects.length);
     }
 
     /**
@@ -71,7 +70,7 @@ public class PickObj<T> implements RandObjGenerator<T>{
      * @param objects Set of predefined objects that can be randomly generated
      * @param g Objects density function
      */
-    public PickObj(T[] objects, RandInt g) {
+    public PickObj(T[] objects, nsgl.integer.Random g) {
         this.objects = objects;
         this.g = g;
     }
