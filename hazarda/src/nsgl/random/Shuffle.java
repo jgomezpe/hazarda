@@ -38,7 +38,7 @@
  */
 package nsgl.random;
 
-import nsgl.integer.UniformGenerator;
+import nsgl.integer.random.Uniform;
 import nsgl.random.raw.RawGenerator;
 import nsgl.random.raw.UsesRawGenerator;
 
@@ -102,7 +102,7 @@ public class Shuffle implements UsesRawGenerator{
 	/**
 	 * Inner generator of indices for shuffling the set of objects
 	 */
-	protected static UniformGenerator ig = new UniformGenerator(0);
+	protected static Uniform ig = new Uniform(0);
 	
 	/**
 	 * Sets the RawGenerator  

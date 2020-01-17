@@ -36,48 +36,59 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package nsgl.generic;
+package nsgl.bit.random;
 
-import nsgl.integer.UniformGenerator;
+import nsgl.random.raw.UsesRawGenerator;
 
 /**
- * <p>Title: RandObj</p>
+ * <p>Title: RandBit</p>
  *
- * <p>Description: A random generator for a predefined set of objects</p>
+ * <p>Description: Generates boolean values randomly.</p>
  *
  */
-public class PickObj<T> implements Random<T>{
-    /**
-     * Set of predefined objects that can be randomly selected
-     */
-    protected T[] objects;
-    /**
-     * Objects density function
-     */
-    protected nsgl.integer.Random g;
+public class Random implements UsesRawGenerator{
+	/**
+	 * Probability of generating a <i>false</i> value
+	 */
+	protected double falseProbability;
+	
+	/**
+	 * Creates a boolean generator with the same probability of generating a <i>true</i> and <i>false</i> value
+	 */
+	public Random(){ this(0.5); }
+	
+	/**
+	 * Creates a boolean generator with the given probability of generating a <i>false</i> value (1.0-falseProbability) is
+	 * the probability of generating a <i>true</i> value
+	 * @param falseProbability Probability of generating a <i>false</i> value
+	 */
+	public Random(double falseProbability ){ this.falseProbability = falseProbability; }
+	
+	/**
+	 * Produces a boolean value according to the stored probability distribution
+	 * @return A boolean value according to the stored probability distribution
+	 */
+	public boolean next(){ return getRaw().next()>falseProbability; }
 
-    /**
-     * Created a random generator of predefined objects
-     * @param objects Set of predefined objects that can be randomly generated
-     */
-    public PickObj(T[] objects) {
-        this.objects = objects;
-        g = new UniformGenerator(this.objects.length);
-    }
+	/**
+	 * Returns a set of random boolean values
+	 * @param v Array where boolean values will be stored
+	 * @param offset Initial position for storing the generated bits
+	 * @param m The total number of random boolean values
+	 */
+	public void generate(boolean[] v, int offset,  int m){ for (int i = 0; i < m; i++) v[i+offset] = next(); }
 
-    /**
-     * Created a random generator of predefined objects
-     * @param objects Set of predefined objects that can be randomly generated
-     * @param g Objects density function
-     */
-    public PickObj(T[] objects, nsgl.integer.Random g) {
-        this.objects = objects;
-        this.g = g;
-    }
-
-    /**
-     * Generates a predefined object following the associated objects distribution
-     * @return A predefined object following the associated objects distribution
-     */
-    public T next(){ return objects[g.next()]; }
+	/**
+	 * Returns a set of random boolean values
+	 * @param m The total number of random boolean values
+	 * @return A set of m random boolean values
+	 */
+	public boolean[] generate(int m) {
+		boolean[] v = null;
+		if (m > 0) {
+			v = new boolean[m];
+			generate( v, 0, m );
+		}
+		return v;
+	}    
 }

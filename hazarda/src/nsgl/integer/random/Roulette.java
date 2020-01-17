@@ -36,7 +36,7 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package nsgl.integer;
+package nsgl.integer.random;
 
 /**
  * <p>Title: RouletteInt</p>
@@ -44,7 +44,7 @@ package nsgl.integer;
  * <p>Description: Generates integer numbers following a Weighted probability density (Roulette)</p>
  *
  */
-public class RouletteGenerator implements Random{
+public class Roulette implements Random{
 	/**
 	 * Probability of generating an integer number [0,length(density))
 	 */
@@ -62,13 +62,13 @@ public class RouletteGenerator implements Random{
 	 * p(i) = (n-i)/sum(1,n)
 	 * @param n number of different integer values that can be generated...
 	 */
-	public RouletteGenerator(int n) { this( equaldensity(n) ); }
+	public Roulette(int n) { this( equaldensity(n) ); }
 	
 	/**
 	 * Creates an integer number generator with the given probability density
 	 * @param density Probability of generating an integer number [0,length(density))
 	 */
-	public RouletteGenerator(double[] density) {
+	public Roulette(double[] density) {
 		this.density = density;
 	}
 	

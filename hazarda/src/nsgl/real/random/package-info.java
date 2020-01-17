@@ -1,4 +1,6 @@
 /**
+ * <p>Random methods for real numbers (Double).</p>
+ *
  * <p>Copyright: Copyright (c) 2019</p>
  *
  * <h3>License</h3>
@@ -36,50 +38,4 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package nsgl.real;
-
-/**
- * <p>Title: Symmetric</p>
- *
- * <p>Description: Generates random real numbers by combining a one side real random number distribution (for the value) and
- *  a boolean random distribution for the side.The one side distribution must be able to generate number in R+ = [0, inf)</p>
- *
- */
-public class SymmetricGenerator implements Random {
-	/**
-	 * Boolean random distribution for the side.
-	 */
-	protected nsgl.bit.Random side;
-	/**
-	 * One side real random number distribution for values
-	 */
-	protected Random one_side;
-	
-	/**
-	 * Creates a symmetric real numbers random distribution with a side probability of 0.5 and a [0,1) uniform distribution, i.e., 
-	 * this distribution will generate uniform real numbers in the interval (-1, 1)  
-	 */
-	public SymmetricGenerator(){ this( new UniformGenerator()); }
-	/**
-	 * Creates a symmetric real numbers random distribution with a side probability of 0.5 and the given one side distribution
-	 * @param one_side One side real random number distribution for values
-	 */
-	public SymmetricGenerator( Random one_side ){ this( new nsgl.bit.Random(), one_side ); }
-	
-	/**
-	 * Creates a symmetric real numbers random distribution with the given side and one side distribution
-	 * @param side Boolean random distribution for the side.
-	 * @param one_side One side real random number distribution for values
-	 */
-	public SymmetricGenerator( nsgl.bit.Random side, Random one_side ){
-		this.side = side;
-		this.one_side = one_side;
-	}
-	
-   /**
-     * Returns a random double number
-     * @return A random double number
-     */
-    @Override
-    public double next(){ return side.next()?one_side.next():-one_side.next(); }  
-}
+package nsgl.real.random;

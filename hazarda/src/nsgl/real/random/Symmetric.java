@@ -36,66 +36,50 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package nsgl.integer;
+package nsgl.real.random;
 
 /**
- * <p>Title: UniformInt</p>
+ * <p>Title: Symmetric</p>
  *
- * <p>Description: Generates integer numbers following an uniform probability distribution</p>
+ * <p>Description: Generates random real numbers by combining a one side real random number distribution (for the value) and
+ *  a boolean random distribution for the side.The one side distribution must be able to generate number in R+ = [0, inf)</p>
  *
  */
-public class UniformGenerator implements Random{
+public class Symmetric implements Random {
 	/**
-	 * Low Limit
+	 * Boolean random distribution for the side.
 	 */
-	protected int min;
-
+	protected nsgl.bit.random.Random side;
 	/**
-	 * Interval Length
+	 * One side real random number distribution for values
 	 */
-	protected int length;
+	protected Random one_side;
 	
 	/**
-	 * Creates a uniform integer number generator in the interval [0,max)
-	 * @param max Sup Limit
+	 * Creates a symmetric real numbers random distribution with a side probability of 0.5 and a [0,1) uniform distribution, i.e., 
+	 * this distribution will generate uniform real numbers in the interval (-1, 1)  
 	 */
-	public UniformGenerator(int max){ this( 0, max ); }
+	public Symmetric(){ this( new Uniform()); }
+	/**
+	 * Creates a symmetric real numbers random distribution with a side probability of 0.5 and the given one side distribution
+	 * @param one_side One side real random number distribution for values
+	 */
+	public Symmetric( Random one_side ){ this( new nsgl.bit.random.Random(), one_side ); }
 	
 	/**
-	 * Creates a uniform integer number generator in the interval [min,max)
-	 * @param min Low limit
-	 * @param max Sup limit
+	 * Creates a symmetric real numbers random distribution with the given side and one side distribution
+	 * @param side Boolean random distribution for the side.
+	 * @param one_side One side real random number distribution for values
 	 */
-	public UniformGenerator(int min, int max) {
-		this.min = min;
-		this.length = max - min;
+	public Symmetric( nsgl.bit.random.Random side, Random one_side ){
+		this.side = side;
+		this.one_side = one_side;
 	}
 	
-	/**
-	 * Fixes the uniform integer number generator to the interval [0,max)
-	 * @param max Sup limit
-	 */
-	public void set( int max ){ set( 0, max ); }
-
-	/**
-	 * Fixes the uniform integer number generator to the interval [min,max)
-	 * @param min Low limit
-	 * @param max Sup limit
-	 */
-	public void set( int min, int max ){
-		if( min>max ){
-			int temp = min;
-			min=max;
-			max=temp;
-		}
-		this.min = min;
-		this.length = max-min; 
-	}
-	
-	/**
-	 * Generates the integer number in the interval [min,max) associated to the real number x in [0,1)
-	 * @return The integer number in the interval [min,max) associated to the real number x in [0,1)
-	 */
-	@Override
-	public int next() {	return (min + (int)(length*getRaw().next()));	}
+   /**
+     * Returns a random double number
+     * @return A random double number
+     */
+    @Override
+    public double next(){ return side.next()?one_side.next():-one_side.next(); }  
 }

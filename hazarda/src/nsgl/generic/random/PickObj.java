@@ -1,6 +1,4 @@
 /**
- * <p>Random methods for real numbers (Double).</p>
- *
  * <p>Copyright: Copyright (c) 2019</p>
  *
  * <h3>License</h3>
@@ -38,4 +36,48 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package nsgl.real;
+package nsgl.generic.random;
+
+import nsgl.integer.random.Uniform;
+
+/**
+ * <p>Title: RandObj</p>
+ *
+ * <p>Description: A random generator for a predefined set of objects</p>
+ *
+ */
+public class PickObj<T> implements Random<T>{
+    /**
+     * Set of predefined objects that can be randomly selected
+     */
+    protected T[] objects;
+    /**
+     * Objects density function
+     */
+    protected nsgl.integer.random.Random g;
+
+    /**
+     * Created a random generator of predefined objects
+     * @param objects Set of predefined objects that can be randomly generated
+     */
+    public PickObj(T[] objects) {
+        this.objects = objects;
+        g = new Uniform(this.objects.length);
+    }
+
+    /**
+     * Created a random generator of predefined objects
+     * @param objects Set of predefined objects that can be randomly generated
+     * @param g Objects density function
+     */
+    public PickObj(T[] objects, nsgl.integer.random.Random g) {
+        this.objects = objects;
+        this.g = g;
+    }
+
+    /**
+     * Generates a predefined object following the associated objects distribution
+     * @return A predefined object following the associated objects distribution
+     */
+    public T next(){ return objects[g.next()]; }
+}

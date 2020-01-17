@@ -1,4 +1,6 @@
 /**
+ * <p>Random methods for a collection of objects.</p>
+ *
  * <p>Copyright: Copyright (c) 2019</p>
  *
  * <h3>License</h3>
@@ -36,59 +38,4 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package nsgl.bit;
-
-import nsgl.random.raw.UsesRawGenerator;
-
-/**
- * <p>Title: RandBit</p>
- *
- * <p>Description: Generates boolean values randomly.</p>
- *
- */
-public class Random implements UsesRawGenerator{
-	/**
-	 * Probability of generating a <i>false</i> value
-	 */
-	protected double falseProbability;
-	
-	/**
-	 * Creates a boolean generator with the same probability of generating a <i>true</i> and <i>false</i> value
-	 */
-	public Random(){ this(0.5); }
-	
-	/**
-	 * Creates a boolean generator with the given probability of generating a <i>false</i> value (1.0-falseProbability) is
-	 * the probability of generating a <i>true</i> value
-	 * @param falseProbability Probability of generating a <i>false</i> value
-	 */
-	public Random(double falseProbability ){ this.falseProbability = falseProbability; }
-	
-	/**
-	 * Produces a boolean value according to the stored probability distribution
-	 * @return A boolean value according to the stored probability distribution
-	 */
-	public boolean next(){ return getRaw().next()>falseProbability; }
-
-	/**
-	 * Returns a set of random boolean values
-	 * @param v Array where boolean values will be stored
-	 * @param offset Initial position for storing the generated bits
-	 * @param m The total number of random boolean values
-	 */
-	public void generate(boolean[] v, int offset,  int m){ for (int i = 0; i < m; i++) v[i+offset] = next(); }
-
-	/**
-	 * Returns a set of random boolean values
-	 * @param m The total number of random boolean values
-	 * @return A set of m random boolean values
-	 */
-	public boolean[] generate(int m) {
-		boolean[] v = null;
-		if (m > 0) {
-			v = new boolean[m];
-			generate( v, 0, m );
-		}
-		return v;
-	}    
-}
+package nsgl.generic.random;

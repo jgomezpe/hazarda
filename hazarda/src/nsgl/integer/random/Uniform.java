@@ -36,45 +36,66 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package nsgl.generic;
+package nsgl.integer.random;
 
 /**
- * <p>Title: RandGenerator</p>
+ * <p>Title: UniformInt</p>
  *
- * <p>Description: Random Generator Utility.</p>
+ * <p>Description: Generates integer numbers following an uniform probability distribution</p>
  *
  */
-public interface Random<T>{
+public class Uniform implements Random{
 	/**
-	 * Generates a random object of class <i>T</i>.
-	 * @return A random object of class <i>T</i>.
+	 * Low Limit
 	 */
-	T next();
-    
+	protected int min;
+
 	/**
-	 * generates a random objects array of class <i>T</i>.
-	 * @param v Array where objects will be stored.
-	 * @param offset Initial position in the array for the generated objects.
-	 * @param m The total number of random objects to be generated.
-	 * @return A set of random objects from the given array
+	 * Interval Length
 	 */
-	default T[] raw(T[] v, int offset, int m) {
-	    for (int i = 0; i < m; i++) v[i+offset] = next();
-	    return v;
+	protected int length;
+	
+	/**
+	 * Creates a uniform integer number generator in the interval [0,max)
+	 * @param max Sup Limit
+	 */
+	public Uniform(int max){ this( 0, max ); }
+	
+	/**
+	 * Creates a uniform integer number generator in the interval [min,max)
+	 * @param min Low limit
+	 * @param max Sup limit
+	 */
+	public Uniform(int min, int max) {
+		this.min = min;
+		this.length = max - min;
 	}
 	
 	/**
-	 * Generates a random objects array of class <i>T</i>.
-	 * @param m The total number of random objects to be generated
-	 * @return A random objects array (size <i>m</i>) of class <i>T</i>.
+	 * Fixes the uniform integer number generator to the interval [0,max)
+	 * @param max Sup limit
 	 */
-	@SuppressWarnings("unchecked")
-	default T[] raw(int m) {
-		T[] v = null;
-		if (m > 0) {
-			v = (T[])new Object[m];
-			raw(v, 0, m);
+	public void set( int max ){ set( 0, max ); }
+
+	/**
+	 * Fixes the uniform integer number generator to the interval [min,max)
+	 * @param min Low limit
+	 * @param max Sup limit
+	 */
+	public void set( int min, int max ){
+		if( min>max ){
+			int temp = min;
+			min=max;
+			max=temp;
 		}
-		return v;
+		this.min = min;
+		this.length = max-min; 
 	}
+	
+	/**
+	 * Generates the integer number in the interval [min,max) associated to the real number x in [0,1)
+	 * @return The integer number in the interval [min,max) associated to the real number x in [0,1)
+	 */
+	@Override
+	public int next() {	return (min + (int)(length*getRaw().next()));	}
 }

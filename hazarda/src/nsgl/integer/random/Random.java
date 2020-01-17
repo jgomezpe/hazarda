@@ -1,6 +1,4 @@
 /**
- * <p>Random methods for integers.</p>
- *
  * <p>Copyright: Copyright (c) 2019</p>
  *
  * <h3>License</h3>
@@ -38,4 +36,45 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package nsgl.integer;
+package nsgl.integer.random;
+
+import nsgl.random.raw.UsesRawGenerator;
+
+/**
+ * <p>Title: RandBit</p>
+ *
+ * <p>Description: Generates integer values randomly.</p>
+ *
+ */
+public interface Random extends UsesRawGenerator{	
+    /**
+     * Returns a random double number
+     * @param x Inverse value (cumulative probability)
+     * @return A random double number
+     */
+    int next();
+	
+	/**
+	 * Returns a set of random integer numbers
+	 * @param v Array where integer numbers will be stored
+	 * @param offset Initial position for storing the generated integers
+	 * @param m The total number of integer numbers
+	 */
+	default void generate(int[] v, int offset, int m) {
+	    for (int i = 0; i < m; i++) v[i+offset] = next();
+	}
+	
+	/**
+	 * Returns a set of random integer numbers
+	 * @param m The total number of random integer numbers
+	 * @return A set of m random integer numbers
+	 */
+	default int[] generate(int m) {
+		int[] v = null;
+		if (m > 0) {
+		    v = new int[m];
+		    generate(v, 0,  m);
+		}
+		return v;
+	}    
+}

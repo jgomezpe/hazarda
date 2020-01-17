@@ -36,47 +36,39 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package nsgl.real;
-
-import nsgl.random.raw.RawGenerator;
+package nsgl.real.random;
 
 /**
- * <p>Title: Gaussian</p>
+ * <p>Title: RandReal</p>
  *
- * <p>Description: Generates real number following a Gaussian distribution.</p>
+ * <p>Description: Abstract random number generator.</p>
  *
  */
-public class GaussianGenerator extends LocationScaleGenerator{
-  /**
-   * Constructor: Creates a Standard Gaussian Number Generator G(0,1)
-   */
-  public GaussianGenerator(){  super();  }
+public interface Random{
 
-  /**
-   * Constructor: Creates a Gaussian Number Generator G(miu,1)
-   * @param miu Mean
-   */
-  public GaussianGenerator( double miu ){  super(miu);  }
-  
-  /**
-   * Constructor: Creates a Gaussian Number Generator G(miu,sigma)
-   * @param miu Mean
-   * @param sigma standard deviation
-   */
-  public GaussianGenerator( double miu, double sigma ){  super(miu,sigma);  }
+	double next();
+	
+	/**
+	 * Returns a set of random double numbers
+	 * @param v Array where random numbers will be stored
+	 * @param offset Initial position for storing the generated real numbers
+	 * @param m The total number of random numbers
+	 */
+	default void generate(double[] v, int offset, int m) {
+		for (int i=0; i<m; i++) v[i+offset] = this.next();
+	}
 
-  @Override
-  public double std() {
-	  RawGenerator g = getRaw();
-      double x,y;
-      double r;
-      do {
-          x = 2.0 * g.next() - 1.0;
-          y = 2.0 * g.next() - 1.0;
-          r = x * x + y * y;
-      } while (r >= 1.0);
-
-      double z = Math.sqrt( -2.0 * Math.log(r) / r);
-      return (y * z);
-  }
+	/**
+	 * Returns a set of random double numbers
+	 * @param m The total number of random numbers
+	 * @return A set of m random double numbers
+	 */
+	default double[] generate(int m) {
+		double[] v = null;
+		if (m > 0) {
+			v = new double[m];                  
+			generate( v, 0, m );
+		}
+		return v;
+	}
 }

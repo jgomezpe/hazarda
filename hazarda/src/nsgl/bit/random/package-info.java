@@ -1,5 +1,5 @@
 /**
- * <p>Random methods for a collection of objects.</p>
+ * <p>Random methods for bits.</p>
  *
  * <p>Copyright: Copyright (c) 2019</p>
  *
@@ -38,4 +38,4 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package nsgl.generic;
+package nsgl.bit.random;

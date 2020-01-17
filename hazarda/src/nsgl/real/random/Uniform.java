@@ -36,7 +36,7 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package nsgl.real;
+package nsgl.real.random;
 
 /**
  * <p>Title: UniformReal</p>
@@ -44,18 +44,18 @@ package nsgl.real;
  * <p>Description: Generates random real numbers with uniform distribution.</p>
  *
  */
-public class UniformGenerator extends LocationScaleGenerator{
+public class Uniform extends LocationScale{
     /**
      * Constructor: Creates a uniform random number generator that generates numbers in the interval [0, 1)
      */
-    public UniformGenerator(){ super(); }
+    public Uniform(){ super(); }
 
     /**
      * Constructor: Creates a uniform random number generator that generates numbers in the interval [minVal, maxVal)
      * @param minVal Inf limit
      * @param maxVal Sup Limit
      */
-    public UniformGenerator(double minVal, double maxVal) { super(minVal, maxVal-minVal);  }
+    public Uniform(double minVal, double maxVal) { super(minVal, maxVal-minVal);  }
 
 	@Override
 	public double std(){ return getRaw().next(); }
