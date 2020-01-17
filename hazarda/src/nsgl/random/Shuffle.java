@@ -112,7 +112,7 @@ public class Shuffle implements UsesRawGenerator{
 	public void setRaw( RawGenerator g ){ RawGenerator.addCast(ig,g); }
 	
 	@Override
-	public RawGenerator getRaw(){ return RawGenerator.generator(ig); }
+	public RawGenerator getRaw(){ return RawGenerator.cast(ig); }
 	
 	/**
 	 * Generates an array with all the integers in the interval [0,n) stored in a random fashion

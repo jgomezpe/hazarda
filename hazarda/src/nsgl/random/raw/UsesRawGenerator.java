@@ -51,5 +51,5 @@ public interface UsesRawGenerator {
 	 */
 	default void setRaw( RawGenerator g ){ RawGenerator.addCast(this,g); }
 	
-	default RawGenerator getRaw(){ return RawGenerator.generator(this); }
+	default RawGenerator getRaw(){ return RawGenerator.cast(this); }
 }

@@ -107,7 +107,7 @@ public interface RawGenerator{
 	 * @param obj Object that will get its comparator method
 	 * @return A comparator method for the given object
 	 */
-	static RawGenerator generator( Object obj ){
+	static RawGenerator cast( Object obj ){
 		if( CastServer.service(Object.class,RawGenerator.class) == null ) CastServer.setService(Object.class, RawGenerator.class, new JavaGenerator());
 		return (RawGenerator)CastServer.service(obj,RawGenerator.class);
 	}
