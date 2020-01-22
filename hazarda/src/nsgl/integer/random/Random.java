@@ -49,7 +49,6 @@ import nsgl.random.raw.UsesRawGenerator;
 public interface Random extends UsesRawGenerator{	
     /**
      * Returns a random double number
-     * @param x Inverse value (cumulative probability)
      * @return A random double number
      */
     int next();

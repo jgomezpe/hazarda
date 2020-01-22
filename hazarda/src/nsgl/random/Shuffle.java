@@ -198,9 +198,10 @@ public class Shuffle implements UsesRawGenerator{
 			set[k] = temp;
 		}
 	}
-    
+
 	/**
 	 * Shuffles the given array of Objects
+	 * @param <T> Type of objects to be shuffled
 	 * @param set Array of objects to be shuffled
 	 */
 	public static <T> void apply(T[] set) {
