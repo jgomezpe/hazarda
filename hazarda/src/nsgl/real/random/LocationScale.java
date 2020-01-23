@@ -130,10 +130,14 @@ public abstract class LocationScale implements UsesRawGenerator, Random{
 	 * @param sigma Scale of the distribution  
 	 */
 	public LocationScale( double miu, double sigma ) {
-		l = (miu==0.0)?new Zero():new NoZero(miu);
-		p = (sigma==1.0)?new One():new NoOne(sigma);
+		setLocation(miu);
+		setScale(sigma);
 	}
+	
+	public void setLocation(double miu) { l = (miu==0.0)?new Zero():new NoZero(miu); }
 
+	public void setScale(double sigma) { p = (sigma==1.0)?new One():new NoOne(sigma); }
+	
 	/**
 	 * Generates random number following the standard distribution, i.e. shift-value <i>miu=0</i> and scale factor <i>sigma=1.0</i>
 	 * @return A random number following the standard distribution, i.e. shift-value <i>miu=0</i> and scale factor <i>sigma=1.0</i>

@@ -120,6 +120,11 @@ public class PowerLaw extends LocationScale{
     	if( alpha==2.0 ) exp = new Fast(); else exp = new Pow(alpha);		
     }
 
+	public void setScale(double b) { 
+		b *= (exp instanceof Pow)?(-1.0/((Pow)exp).coarse_alpha):1.0;
+		p = (b==1.0)?new One():new NoOnePL(b); 
+	}
+	
 	@Override
 	public double std(){ return exp.apply(1.0-getRaw().next()); }    
 }
