@@ -1,4 +1,4 @@
-package demo.random;
+package hazarda;
 
 import nsgl.integer.random.Random;
 import nsgl.integer.random.Roulette;

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package demo.random;
+package hazarda;
 
 import nsgl.real.random.PowerLaw;
 import nsgl.real.random.Gaussian;

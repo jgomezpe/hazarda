@@ -1,4 +1,4 @@
-package demo.random;
+package hazarda;
 
 import nsgl.random.Shuffle;
 
