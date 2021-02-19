@@ -1,4 +1,4 @@
-package test.hazarda;
+package test;
 
 import hazarda.Hazarda;
 

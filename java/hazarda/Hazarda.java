@@ -11,9 +11,9 @@ public class Hazarda{
     
     // Raw Generator [0,1)
     
-    public static void raw(RawGenerator raw) { RawGenerator.cast(Object.class, raw); }
+    public static void raw(RawGenerator raw) { RawGenerator.set(raw); }
     
-    public static RawGenerator raw() { return RawGenerator.cast(Object.class); }
+    public static RawGenerator raw() { return RawGenerator.get(); }
     
     public static void java() {
 	raw(new JavaGenerator());
@@ -330,11 +330,11 @@ public class Hazarda{
      * @param set Array of integers to be shuffled
      */
     public static void shuffle(int[] set) {
-	nsgl.integer.array.Util.shuffle(set);
+	nsgl.integer.array.Shuffle.apply(set);
     }
     
     public static int[] shuffle(int n) {
-	return nsgl.integer.array.Util.shuffle(n);
+	return nsgl.integer.array.Shuffle.apply(n);
     }
 
     /**
@@ -342,7 +342,7 @@ public class Hazarda{
      * @param set Array of integers to be shuffled
      */
     public static void shuffle(double[] set) {
-	nsgl.real.array.Util.shuffle(set);
+	nsgl.real.array.Shuffle.apply(set);
     } 
 
     /**
@@ -352,7 +352,7 @@ public class Hazarda{
     public static void apply(long[] set) {
 	int j, k;
 	long temp;
-	int[] indices = nsgl.integer.array.Util.shuffle_indices(set.length);
+	int[] indices = nsgl.integer.array.Shuffle.indices(set.length);
 	for (int i = 0; i<indices.length; i+=2) {
 	    j = indices[i];
 	    k = indices[i+1];
@@ -369,7 +369,7 @@ public class Hazarda{
     public static void apply(char[] set) {
 	int j, k;
 	char temp;
-	int[] indices = nsgl.integer.array.Util.shuffle_indices(set.length);
+	int[] indices = nsgl.integer.array.Shuffle.indices(set.length);
 	for (int i = 0; i<indices.length; i+=2) {
 	    j = indices[i];
 	    k = indices[i+1];
@@ -385,7 +385,7 @@ public class Hazarda{
      * @param set Array of objects to be shuffled
      */
     public static <T> void shuffle(T[] set) {
-	Array.shuffle(set);
+	nsgl.array.Shuffle.apply(set);
     }
 
     /**
@@ -394,6 +394,6 @@ public class Hazarda{
      * @param set Array of objects to be shuffled
      */
     public static <T> void shuffle(Array<T> set) {
-	Array.shuffle(set);
+	nsgl.array.Shuffle.apply(set);
     }
 }
