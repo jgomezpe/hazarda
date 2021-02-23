@@ -1,19 +1,19 @@
 package hazarda;
 
-import nsgl.array.Array;
-import nsgl.random.raw.JavaGenerator;
-import nsgl.random.raw.RawGenerator;
-import nsgl.random.raw.rngpack.RanMT;
-import nsgl.random.raw.rngpack.Ranlux;
-import nsgl.random.raw.rngpack.Ranmar;
+import hazarda.raw.JavaGenerator;
+import hazarda.raw.RawGenerator;
+import hazarda.raw.rngpack.RanMT;
+import hazarda.raw.rngpack.Ranlux;
+import hazarda.raw.rngpack.Ranmar;
+import speco.array.Array;
 
 public class Hazarda{
     
-    // Raw Generator [0,1)
+    protected static RawGenerator raw = new JavaGenerator(); // Raw Generator [0,1)
     
-    public static void raw(RawGenerator raw) { RawGenerator.set(raw); }
+    public static void raw(RawGenerator raw) { Hazarda.raw = raw; }
     
-    public static RawGenerator raw() { return RawGenerator.get(); }
+    public static RawGenerator raw() { return raw; }
     
     public static void java() {
 	raw(new JavaGenerator());
@@ -50,8 +50,8 @@ public class Hazarda{
     
     // Double generation
     
-    public static nsgl.real.random.Gaussian gauss_rand(double mu, double sigma){
-	return new nsgl.real.random.Gaussian(mu,sigma);
+    public static hazarda.real.Gaussian gauss_rand(double mu, double sigma){
+	return new hazarda.real.Gaussian(mu,sigma);
     }
 
     public static double gauss(){ return gauss_rand(0.0, 1.0).next(); }
@@ -116,8 +116,8 @@ public class Hazarda{
     }
     
     
-    public static nsgl.real.random.PowerLaw powerlaw_rand(double alpha, double b, double c){
-	return new nsgl.real.random.PowerLaw(alpha,b,c);
+    public static hazarda.real.PowerLaw powerlaw_rand(double alpha, double b, double c){
+	return new hazarda.real.PowerLaw(alpha,b,c);
     }
 
     public static double powerlaw(){ return powerlaw_rand(2.0, 1.0, 0.0).next(); }
@@ -181,8 +181,8 @@ public class Hazarda{
 	return powerlaw_rand(alpha, b, c).generate(m); 
     }
     
-    public static nsgl.real.random.Uniform rand(double min, double max ){
-	return new nsgl.real.random.Uniform(min, max);
+    public static hazarda.real.Uniform rand(double min, double max ){
+	return new hazarda.real.Uniform(min, max);
     }
 
     public static double uniform(double min, double max){ return rand(min,max).next(); }
@@ -218,8 +218,8 @@ public class Hazarda{
  
     // Integer generation
     
-    public static nsgl.integer.random.Roulette rand(double[] density){
-	return new nsgl.integer.random.Roulette(density);
+    public static hazarda.integer.Roulette rand(double[] density){
+	return new hazarda.integer.Roulette(density);
     }
 
     public static int roulette(double[] density){ return rand(density).next(); }
@@ -243,8 +243,8 @@ public class Hazarda{
 	return rand(density).generate(m); 
     }
  
-    public static nsgl.integer.random.Uniform rand(int min, int max ){
-	return new nsgl.integer.random.Uniform(min, max);
+    public static hazarda.integer.Uniform rand(int min, int max ){
+	return new hazarda.integer.Uniform(min, max);
     }
 
     public static int uniform(int min, int max){ return rand(min,max).next(); }
@@ -280,8 +280,8 @@ public class Hazarda{
  
     // Boolean 
     
-    public static nsgl.bit.random.Random rand(double p_false){
-	return new nsgl.bit.random.Random(p_false);
+    public static hazarda.bit.Random rand(double p_false){
+	return new hazarda.bit.Random(p_false);
     }
 
     public static boolean bool(){ return bool(0.5); }
@@ -330,11 +330,11 @@ public class Hazarda{
      * @param set Array of integers to be shuffled
      */
     public static void shuffle(int[] set) {
-	nsgl.integer.array.Shuffle.apply(set);
+	hazarda.integer.array.Shuffle.apply(set);
     }
     
     public static int[] shuffle(int n) {
-	return nsgl.integer.array.Shuffle.apply(n);
+	return hazarda.integer.array.Shuffle.apply(n);
     }
 
     /**
@@ -342,7 +342,7 @@ public class Hazarda{
      * @param set Array of integers to be shuffled
      */
     public static void shuffle(double[] set) {
-	nsgl.real.array.Shuffle.apply(set);
+	hazarda.real.array.Shuffle.apply(set);
     } 
 
     /**
@@ -352,7 +352,7 @@ public class Hazarda{
     public static void apply(long[] set) {
 	int j, k;
 	long temp;
-	int[] indices = nsgl.integer.array.Shuffle.indices(set.length);
+	int[] indices = hazarda.integer.array.Shuffle.indices(set.length);
 	for (int i = 0; i<indices.length; i+=2) {
 	    j = indices[i];
 	    k = indices[i+1];
@@ -369,7 +369,7 @@ public class Hazarda{
     public static void apply(char[] set) {
 	int j, k;
 	char temp;
-	int[] indices = nsgl.integer.array.Shuffle.indices(set.length);
+	int[] indices = hazarda.integer.array.Shuffle.indices(set.length);
 	for (int i = 0; i<indices.length; i+=2) {
 	    j = indices[i];
 	    k = indices[i+1];
@@ -385,7 +385,7 @@ public class Hazarda{
      * @param set Array of objects to be shuffled
      */
     public static <T> void shuffle(T[] set) {
-	nsgl.array.Shuffle.apply(set);
+	speco.array.Shuffle.apply(set);
     }
 
     /**
@@ -394,6 +394,6 @@ public class Hazarda{
      * @param set Array of objects to be shuffled
      */
     public static <T> void shuffle(Array<T> set) {
-	nsgl.array.Shuffle.apply(set);
+	speco.array.Shuffle.apply(set);
     }
 }
