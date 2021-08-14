@@ -55,21 +55,25 @@ public class Gaussian implements Random{
     public Gaussian(){ this(0.0,1.0); }
 
     /**
-     * Constructor: Creates a Gaussian Number Generator G(miu,1)
-     * @param miu Mean
+     * Constructor: Creates a Gaussian Number Generator G(0,sigma)
+     * @param sigma Standard deviation of the Gaussian generator
      */
     public Gaussian( double sigma ){  this(0.0,sigma);  }
   
     /**
-     * Constructor: Creates a Gaussian Number Generator G(miu,sigma)
+     * Constructor: Creates a Gaussian Number Generator G(mu,sigma)
      * @param mu Mean
-     * @param sigma standard deviation
+     * @param sigma Standard deviation
      */
     public Gaussian( double mu, double sigma ){  
 	this.mu = mu;
 	this.sigma = sigma;  
     }
 
+    /**
+     * Generates a random number following the Gaussian distribution G(mu,sigma)
+     * @return A random number following the Gaussian distribution G(mu,sigma) 
+     */
     @Override
     public double next() { return Hazarda.gaussian(mu, sigma); }
 }

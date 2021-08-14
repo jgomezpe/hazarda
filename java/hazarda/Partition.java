@@ -59,6 +59,8 @@ public class Partition {
     
     /**
      * Creates a random partition of <i>m</i> groups equal size from a set of <i>n</i> elements 
+     * @param n Number of elements to be partitioned (will be indexed 0,...,n-1)
+     * @param m Number of groups in the partition 
      */
     public Partition(int n, int m) {
 	this(Hazarda.permutation(n), m);
@@ -66,6 +68,8 @@ public class Partition {
     
     /**
      * Creates a partition of <i>m</i> groups equal size from a set of elements 
+     * @param set Elements to be partitioned
+     * @param m Number of groups in the partition 
      */
     public Partition(int[] set, int m) {
 	this.index = set;

@@ -12,6 +12,10 @@ public class Hazarda{
     
     protected static RawGenerator raw = new JavaGenerator(); // Raw Generator [0,1)
     
+    /**
+     * Sets the raw generator for the Hazarda library
+     * @param raw RawGenerator used by Hazarda (generates double numbers in the [0,1) interval)
+     */
     public static void raw(RawGenerator raw) { Hazarda.raw = raw; }
     
     public static RawGenerator raw() { return raw; }
@@ -49,7 +53,10 @@ public class Hazarda{
      */
     public static double[] next(int m) { return raw.raw(m); }
     
-    // Double generation
+    /**
+     * Generates a random number following the Gaussian distribution G(0,1)
+     * @return A random number following the Gaussian distribution G(0,1) 
+     */
     public static double gaussian(){
 	double x,y;
 	double r;
@@ -63,7 +70,19 @@ public class Hazarda{
 	return (y * z);
     }
 
+    /**
+     * Generates a random number following the Gaussian distribution G(0,sigma)
+     * @param sigma Standard deviation
+     * @return A random number following the Gaussian distribution G(0,sigma) 
+     */
     public static double gaussian(double sigma){ return gaussian()*sigma; }
+
+    /**
+     * Generates a random number following the Gaussian distribution G(mu,sigma)
+     * @param mu Mean
+     * @param sigma Standard deviation
+     * @return A random number following the Gaussian distribution G(mu,sigma) 
+     */
     public static double gaussian(double mu, double sigma){ return mu+gaussian(sigma); }
    
     public static double powerlaw(){ return 1.0/(1.0-raw.next()); }
@@ -81,10 +100,21 @@ public class Hazarda{
 	return Math.pow((max-min)*raw.next()+min, 1.0/alpha); 
     }
     
+    /**
+     * Generates a real number in the interval [0,max)
+     * @param max Right side of the interval [0,max)
+     * @return A real number in the interval [0,max)
+     */
     public static double uniform( double max ) {
 	return max * raw.next();
     }
      
+    /**
+     * Generates a real number in the interval [min,max)
+     * @param min Left side of the interval [min,max)
+     * @param max Right side of the interval [min,max)
+     * @return A real number in the interval [min,max)
+     */
     public static double uniform(double min, double max){ 
 	return min+uniform(max-min); 
     }

@@ -9,8 +9,7 @@ public class Tournament implements Selection{
     protected int m;
 
     /**
-     * Constructor: Create a tournament selection strategy with m players.
-     * @param m The number of players in the tournament
+     * Constructor: Create a tournament selection strategy with 4 players.
      */
     public Tournament(){ this(4); }
 

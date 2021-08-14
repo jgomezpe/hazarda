@@ -43,6 +43,7 @@ public class Elitism implements Selection{
      * Selects a subset of candidate solutions from a set of candidates
      * @param n Number of candidate solutions to be selected
      * @param q Quality associated to each candidate solution
+     * @param order Quality order (low to high, high to low, etc)
      * @return Indices of the selected candidate solutions
      */
     public int[] apply( int n, double[] q, DoubleOrder order ){

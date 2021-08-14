@@ -13,10 +13,10 @@ public class IndexQOrder implements IntOrder{
     }
     
     /**
-     * Determines if the first Double is less than (in some order) the second Double (one<two)
+     * Determines if the first Double is less than (in some order) the second Double (one&lt;two)
      * @param one First Double
      * @param two Second Double
-     * @return (one<two)
+     * @return (one&lt;two)
      */
     public int compare(Integer one, Integer two){
 	return order.compare(q[two],q[one]); 

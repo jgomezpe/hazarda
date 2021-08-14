@@ -50,14 +50,15 @@ public class Uniform implements Random{
     protected double min;
     protected double length;
     /**
-     * Constructor: Creates a uniform random number generator that generates numbers in the interval [0, 1)
+     * Constructor: Creates a uniform random number generator that generates numbers in the interval [0, max)
+     * @param max Right side of the close open interval (not included)
      */
     public Uniform(double max){ this(0.0, max); }
 
     /**
      * Constructor: Creates a uniform random number generator that generates numbers in the interval [minVal, maxVal)
-     * @param minVal Inf limit
-     * @param maxVal Sup Limit
+     * @param min Left limit of the interval
+     * @param max Right limit of the interval
      */
     public Uniform(double min, double max) { 
 	this.min = min;
@@ -66,14 +67,14 @@ public class Uniform implements Random{
 
     /**
      * Fixes the uniform integer number generator to the interval [0,max)
-     * @param max Sup limit
+     * @param max Right limit of the interval
      */
     public void set( double max ){ set( 0.0, max ); }
 
     /**
      * Fixes the uniform integer number generator to the interval [min,max)
-     * @param min Low limit
-     * @param max Sup limit
+     * @param min Left limit of the interval
+     * @param max Right limit of the interval
      */
     public void set(double min, double max ){
 	this.min = min;
