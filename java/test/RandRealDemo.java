@@ -19,21 +19,18 @@ public class RandRealDemo{
 	    }
 	    
 	    System.out.println("*********Uniform generator [-5.0,5.0)**********");
-	    x = Hazarda.uniform(-5.0, 5.0, 100);
-	    for( int i=0; i<x.length; i++ ){
-		System.out.println( x[i] );
+	    for( int i=0; i<100; i++ ){
+		System.out.println( Hazarda.uniform(-5.0, 5.0) );
 	    }
 	    
 	    System.out.println("*********Gauss generator N(0.0,1.0)**********");
-	    x = Hazarda.gauss(100);
-	    for( int i=0; i<x.length; i++ ){
-		System.out.println( x[i] );
+	    for( int i=0; i<100; i++ ){
+		System.out.println( Hazarda.gaussian() );
 	    }
 
 	    System.out.println("*********Power Law generator PL(2.0,1.0,0.0)**********");
-	    x = Hazarda.powerlaw(100);
-	    for( int i=0; i<x.length; i++ ){
-		System.out.println( x[i] );
+	    for( int i=0; i<100; i++ ){
+		System.out.println( Hazarda.powerlaw() );
 	    }
 	}    
 }

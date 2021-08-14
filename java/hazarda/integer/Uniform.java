@@ -47,57 +47,52 @@ import hazarda.Hazarda;
  *
  */
 public class Uniform implements Random{
-	/**
-	 * Low Limit
-	 */
-	protected int min;
+    /**
+     * Low Limit
+     */
+    protected int min;
 
-	/**
-	 * Interval Length
-	 */
-	protected int length;
+    /**
+     * Interval Length
+     */
+    protected int length;
 	
-	/**
-	 * Creates a uniform integer number generator in the interval [0,max)
-	 * @param max Sup Limit
-	 */
-	public Uniform(int max){ this( 0, max ); }
+    /**
+     * Creates a uniform integer number generator in the interval [0,max)
+     * @param max Sup Limit
+     */
+    public Uniform(int max){ this( 0, max ); }
 	
-	/**
-	 * Creates a uniform integer number generator in the interval [min,max)
-	 * @param min Low limit
-	 * @param max Sup limit
-	 */
-	public Uniform(int min, int max) {
-		this.min = min;
-		this.length = max - min;
-	}
+    /**
+     * Creates a uniform integer number generator in the interval [min,max)
+     * @param min Low limit
+     * @param max Sup limit
+     */
+    public Uniform(int min, int max) {
+	this.min = min;
+	this.length = max - min;
+    }
 	
-	/**
-	 * Fixes the uniform integer number generator to the interval [0,max)
-	 * @param max Sup limit
-	 */
-	public void set( int max ){ set( 0, max ); }
+    /**
+     * Fixes the uniform integer number generator to the interval [0,max)
+     * @param max Sup limit
+     */
+    public void set( int max ){ set( 0, max ); }
 
-	/**
-	 * Fixes the uniform integer number generator to the interval [min,max)
-	 * @param min Low limit
-	 * @param max Sup limit
-	 */
-	public void set( int min, int max ){
-		if( min>max ){
-			int temp = min;
-			min=max;
-			max=temp;
-		}
-		this.min = min;
-		this.length = max-min; 
-	}
+    /**
+     * Fixes the uniform integer number generator to the interval [min,max)
+     * @param min Low limit
+     * @param max Sup limit
+     */
+    public void set( int min, int max ){
+	this.min = min;
+	this.length = max-min; 
+    }
 	
-	/**
-	 * Generates the integer number in the interval [min,max) associated to the real number x in [0,1)
-	 * @return The integer number in the interval [min,max) associated to the real number x in [0,1)
-	 */
-	@Override
-	public int next() {	return (min + (int)(length*Hazarda.next()));	}
+    /**
+     * Generates the integer number in the interval [min,max) associated to the real number x in [0,1)
+     * @return The integer number in the interval [min,max) associated to the real number x in [0,1)
+     */
+    @Override
+    public int next() {	return min + Hazarda.uniform(length);	}
 }

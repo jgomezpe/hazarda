@@ -46,87 +46,31 @@ import hazarda.Hazarda;
  * <p>Description: Generates real numbers following a Generalized Power Law distribution.</p>
  *
  */
-public class PowerLaw extends LocationScale{
-	/**
-	 * Abstract Exponentiation method used by the Power Law distribution (when the <i>coarse alpha</i> is 1.0 is is just a division)
-	 * @author Jonatan Gomez
-	 *
-	 */
-	protected interface Exp{ public double apply( double x); }
-	
-	/**
-	 * When the Power Law is using the <i>alpha</i> as 2.0 it is is just a division 
-	 * @author Jonatan Gomez
-	 *
-	 */
-	protected class Fast implements Exp{ @Override public double apply(double x){ return 1.0/(1.0-x); }	}
-	
-	/**
-	 * When the Power Law is using the <i>alpha</i> different to 2.0, it is is the pow function 
-	 * @author Jonatan Gomez
-	 *
-	 */
-	protected class Pow implements Exp{
-		/**
-		 * Coarse alpha: Generates real numbers following a Power Law distribution using <i>f(x) = (1-x)<sup>coarse_alpha</sup></i>
-		 *  with <i>coarse_alpha=1/(1-alpha)</i> 
-		 */
-	    protected double coarse_alpha = -1.0;
-	    
-	    public Pow(double alpha) { coarse_alpha = 1.0/(1.0-alpha); }
-		@Override
-		public double apply(double x){ return Math.pow(1.0-x, coarse_alpha); }
-	}
-	
-	/**
-	 * When scaling factor is different from 1.0, it is not just scaling the standard power law
-	 * @author Jonatan Gomez
-	 *
-	 */
-	protected class NoOnePL extends NoOne{
-		public NoOnePL(double sigma){ super(sigma); }
-		@Override
-		public double apply(double x){ return sigma*x - sigma; }		
-	}
-	
-    protected Exp exp; 
+public class PowerLaw implements Random{
+    protected double alpha;
+    protected double min;
+    protected double max;
+    
+    /**
+     * Constructor: Creates a Standard Gaussian Number Generator G(0,1)
+     */
+    public PowerLaw(){ this(-2.0); }
 
     /**
-     * Creates a Standard generalized power law <i>alpha=2.0, b=1.0, c=0.0</i>
+     * Constructor: Creates a Standard Gaussian Number Generator G(0,1)
      */
-	public PowerLaw(){ this( 2.0 ); }
-	
-    /**
-     * Creates a generalized power law <i>b=1.0, c=0.0</i>
-     * @param alpha <i>alpha</i> parameter of the Generalized power law 
-     */
-	public PowerLaw( double alpha ){ this( alpha, 1.0 ); }
+    public PowerLaw(double alpha){ this(alpha,1.0,0.0); }
 
     /**
-     * Creates a generalized power law <i>c=0.0</i>
-     * @param alpha <i>alpha</i> parameter of the Generalized power law 
-     * @param b <i>b</i> parameter of the Generalized power law 
+     * Constructor: Creates a Gaussian Number Generator G(miu,1)
+     * @param miu Mean
      */
-	public PowerLaw( double alpha, double b ){ this( alpha, b, 0.0 ); }
-
-	/**
-     * Creates a generalized power law
-     * @param alpha <i>alpha</i> parameter of the Generalized power law 
-     * @param b <i>b</i> parameter of the Generalized power law 
-     * @param c <i>c</i> parameter of the Generalized power law 
-     */
-	public PowerLaw( double alpha, double b, double c ){
-		super(c);
-		b *= (alpha-1.0);
-		if( b==1.0 ) p = new One(); else p = new NoOnePL(b);
-    	if( alpha==2.0 ) exp = new Fast(); else exp = new Pow(alpha);		
+    public PowerLaw( double alpha, double min, double max ){
+	this.alpha = alpha;
+	this.min = min;
+	this.max = max;
     }
-
-	public void setScale(double b) { 
-		b *= (exp instanceof Pow)?(-1.0/((Pow)exp).coarse_alpha):1.0;
-		p = (b==1.0)?new One():new NoOnePL(b); 
-	}
-	
-	@Override
-	public double std(){ return exp.apply(1.0-Hazarda.next()); }    
+  
+    @Override
+    public double next() { return Hazarda.powerlaw(alpha,min,max); }    
 }

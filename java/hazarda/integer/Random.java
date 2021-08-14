@@ -52,27 +52,27 @@ public interface Random{
      */
     int next();
 	
-	/**
-	 * Returns a set of random integer numbers
-	 * @param v Array where integer numbers will be stored
-	 * @param offset Initial position for storing the generated integers
-	 * @param m The total number of integer numbers
-	 */
-	default void generate(int[] v, int offset, int m) {
-	    for (int i = 0; i < m; i++) v[i+offset] = next();
-	}
+    /**
+     * Returns a set of random integer numbers
+     * @param v Array where integer numbers will be stored
+     * @param offset Initial position for storing the generated integers
+     * @param m The total number of integer numbers
+     */
+    default void generate(int[] v, int offset, int m) {
+	for (int i = 0; i < m; i++) v[i+offset] = next();
+    }
 	
-	/**
-	 * Returns a set of random integer numbers
-	 * @param m The total number of random integer numbers
-	 * @return A set of m random integer numbers
-	 */
-	default int[] generate(int m) {
-		int[] v = null;
-		if (m > 0) {
-		    v = new int[m];
-		    generate(v, 0,  m);
-		}
-		return v;
-	}    
+    /**
+     * Returns a set of random integer numbers
+     * @param m The total number of random integer numbers
+     * @return A set of m random integer numbers
+     */
+    default int[] generate(int m) {
+	int[] v = null;
+	if (m > 0) {
+	    v = new int[m];
+	    generate(v, 0,  m);
+	}
+	return v;
+    }    
 }

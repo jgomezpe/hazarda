@@ -6,6 +6,13 @@ A Random Number Generation Library
 &nbsp;E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A>
 &nbsp;All rights reserved.
 
+&nbsp;Ready to use: <A HREF="https://github.com/jgomezpe/libs/hazarda.jar">https://github.com/jgomezpe/libs/hazarda.jar</A>
+
+&nbsp;Source code: <A HREF="https://github.com/jgomezpe/hazarda/">https://github.com/jgomezpe/hazarda/</A>
+
+&nbsp;API documentation: <A HREF="https://numtseng.com/api/hazarda/">https://numtseng.com/api/hazarda/</A>
+
+
 <h3>Licence</h3>
 Redistribution and use in source and binary forms, with or without	modification, are permitted provided that the following conditions are met:
 

@@ -45,30 +45,29 @@ package hazarda.real;
  *
  */
 public interface Random{
-
-	double next();
+    double next();
 	
-	/**
-	 * Returns a set of random double numbers
-	 * @param v Array where random numbers will be stored
-	 * @param offset Initial position for storing the generated real numbers
-	 * @param m The total number of random numbers
-	 */
-	default void generate(double[] v, int offset, int m) {
-		for (int i=0; i<m; i++) v[i+offset] = this.next();
-	}
+    /**
+     * Returns a set of random double numbers
+     * @param v Array where random numbers will be stored
+     * @param offset Initial position for storing the generated real numbers
+     * @param m The total number of random numbers
+     */
+    default void generate(double[] v, int offset, int m) {
+	for (int i=0; i<m; i++) v[i+offset] = this.next();
+    }
 
-	/**
-	 * Returns a set of random double numbers
-	 * @param m The total number of random numbers
-	 * @return A set of m random double numbers
-	 */
-	default double[] generate(int m) {
-		double[] v = null;
-		if (m > 0) {
-			v = new double[m];                  
-			generate( v, 0, m );
-		}
-		return v;
+    /**
+     * Returns a set of random double numbers
+     * @param m The total number of random numbers
+     * @return A set of m random double numbers
+     */
+    default double[] generate(int m) {
+	double[] v = null;
+	if (m > 0) {
+	    v = new double[m];                  
+	    generate( v, 0, m );
 	}
+	return v;
+    }
 }

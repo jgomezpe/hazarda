@@ -61,7 +61,7 @@ public class Partition {
      * Creates a random partition of <i>m</i> groups equal size from a set of <i>n</i> elements 
      */
     public Partition(int n, int m) {
-	this(hazarda.integer.array.Shuffle.apply(n), m);
+	this(Hazarda.permutation(n), m);
     }
     
     /**

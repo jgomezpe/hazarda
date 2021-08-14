@@ -8,11 +8,11 @@ public class RandBitDemo {
 	// true is generated with probability 0.3
 	int n = 100;
 	// Generating an array of ten random values
-	boolean[] x = Hazarda.bool(0.7,n);
 	int count = 0;
 	for( int i=0; i<n; i++ ) {
-	    System.out.println( x[i] );
-	    if(x[i]) count++;
+	    boolean b = Hazarda.bool(0.7);
+	    System.out.println(b);
+	    if(b) count++;
 	}
 	System.out.println(count);
 	System.out.println("****************");

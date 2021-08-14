@@ -68,7 +68,7 @@ public class Random{
 	 * Produces a boolean value according to the stored probability distribution
 	 * @return A boolean value according to the stored probability distribution
 	 */
-	public boolean next(){ return Hazarda.next()>falseProbability; }
+	public boolean next(){ return Hazarda.bool(falseProbability); }
 
 	/**
 	 * Returns a set of random boolean values

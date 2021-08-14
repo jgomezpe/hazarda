@@ -1,5 +1,7 @@
 package hazarda.real;
 
+import hazarda.Hazarda;
+
 public class HalfGaussian extends Gaussian{
 	/**
 	 * Constructor: Creates a Half Gaussian Number Generator |G(0,1)|
@@ -17,8 +19,8 @@ public class HalfGaussian extends Gaussian{
 	 * @param miu Zero value
 	 * @param sigma standard deviation
 	 */
-	public HalfGaussian( double miu, double sigma ){  super(miu,sigma);  }
+	public HalfGaussian( double mu, double sigma ){  super(mu,sigma);  }
 
 	@Override
-	public double std() { return Math.abs(super.std()); }
+	public double next() { return mu+sigma*Math.abs(Hazarda.gaussian()); }
 }

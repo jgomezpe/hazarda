@@ -39,7 +39,6 @@
 package hazarda.real;
 
 import hazarda.Hazarda;
-import hazarda.raw.RawGenerator;
 
 /**
  * <p>Title: Gaussian</p>
@@ -47,37 +46,30 @@ import hazarda.raw.RawGenerator;
  * <p>Description: Generates real number following a Gaussian distribution.</p>
  *
  */
-public class Gaussian extends LocationScale{
-  /**
-   * Constructor: Creates a Standard Gaussian Number Generator G(0,1)
-   */
-  public Gaussian(){  super();  }
+public class Gaussian implements Random{
+    protected double mu;
+    protected double sigma;
+    /**
+     * Constructor: Creates a Standard Gaussian Number Generator G(0,1)
+     */
+    public Gaussian(){ this(0.0,1.0); }
 
-  /**
-   * Constructor: Creates a Gaussian Number Generator G(miu,1)
-   * @param miu Mean
-   */
-  public Gaussian( double miu ){  super(miu);  }
+    /**
+     * Constructor: Creates a Gaussian Number Generator G(miu,1)
+     * @param miu Mean
+     */
+    public Gaussian( double sigma ){  this(0.0,sigma);  }
   
-  /**
-   * Constructor: Creates a Gaussian Number Generator G(miu,sigma)
-   * @param miu Mean
-   * @param sigma standard deviation
-   */
-  public Gaussian( double miu, double sigma ){  super(miu,sigma);  }
+    /**
+     * Constructor: Creates a Gaussian Number Generator G(miu,sigma)
+     * @param mu Mean
+     * @param sigma standard deviation
+     */
+    public Gaussian( double mu, double sigma ){  
+	this.mu = mu;
+	this.sigma = sigma;  
+    }
 
-  @Override
-  public double std() {
-      RawGenerator g = Hazarda.raw();
-      double x,y;
-      double r;
-      do {
-          x = 2.0 * g.next() - 1.0;
-          y = 2.0 * g.next() - 1.0;
-          r = x * x + y * y;
-      } while (r >= 1.0);
-
-      double z = Math.sqrt( -2.0 * Math.log(r) / r);
-      return (y * z);
-  }
+    @Override
+    public double next() { return Hazarda.gaussian(mu, sigma); }
 }

@@ -47,52 +47,43 @@ import hazarda.Hazarda;
  *
  */
 public class Roulette implements Random{
-	/**
-	 * Probability of generating an integer number [0,length(density))
-	 */
-	protected double[] density;
+    /**
+     * Probability of generating an integer number [0,length(density))
+     */		
+    protected double[] density;
 	
-	protected static double[] equaldensity(int n) {
-		double[] density = new double[n];
+    protected static double[] equaldensity(int n) {
+	double[] density = new double[n];
         double total = n * (n + 1) / 2.0;
         for (int i = 0; i < n; i++) density[i] = (n - i) / total;
         return density;
-	}
+    }
 	
-	/**
-	 * Creates an integer number generator [0,n) with the following probability density:
-	 * p(i) = (n-i)/sum(1,n)
-	 * @param n number of different integer values that can be generated...
-	 */
-	public Roulette(int n) { this( equaldensity(n) ); }
+    /**
+     * Creates an integer number generator [0,n) with the following probability density:
+     * p(i) = (n-i)/sum(1,n)
+     * @param n number of different integer values that can be generated...
+     */
+    public Roulette(int n) { this( equaldensity(n) ); }
 	
-	/**
-	 * Creates an integer number generator with the given probability density
-	 * @param density Probability of generating an integer number [0,length(density))
-	 */
-	public Roulette(double[] density) {
-		this.density = density;
-	}
+    /**
+     * Creates an integer number generator with the given probability density
+     * @param density Probability of generating an integer number [0,length(density))
+     */
+    public Roulette(double[] density) {
+	this.density = density;
+    }
 	
-	/**
-	 * Generates an integer number following the associated density function
-	 * @return An integer number following the associated density function
-	 */
-	@Override
-	public int next() {
-		double x = Hazarda.next();
-		int length = density.length;
-		int i = 0;
-		while (i < length && x >= density[i]) {
-			x -= density[i];
-			i++;
-		}
-		return i;
-	}
+    /**
+     * Generates an integer number following the associated density function
+     * @return An integer number following the associated density function
+     */
+    @Override
+    public int next() { return Hazarda.roulette(density); }
 
-	/**
-	 * Defines the density function of the generated integers
-	 * @param density Probability of generating an integer number [0,length(density))
-	 */
-	public void setDensity(double[] density) { this.density = density; }
+    /**
+     * Defines the density function of the generated integers
+     * @param density Probability of generating an integer number [0,length(density))
+     */
+    public void density(double[] density) { this.density = density; }
 }

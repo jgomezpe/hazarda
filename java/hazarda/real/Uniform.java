@@ -46,19 +46,44 @@ import hazarda.Hazarda;
  * <p>Description: Generates random real numbers with uniform distribution.</p>
  *
  */
-public class Uniform extends LocationScale{
+public class Uniform implements Random{
+    protected double min;
+    protected double length;
     /**
      * Constructor: Creates a uniform random number generator that generates numbers in the interval [0, 1)
      */
-    public Uniform(){ super(); }
+    public Uniform(double max){ this(0.0, max); }
 
     /**
      * Constructor: Creates a uniform random number generator that generates numbers in the interval [minVal, maxVal)
      * @param minVal Inf limit
      * @param maxVal Sup Limit
      */
-    public Uniform(double minVal, double maxVal) { super(minVal, maxVal-minVal);  }
+    public Uniform(double min, double max) { 
+	this.min = min;
+	this.length = max-length;
+    }
 
-	@Override
-	public double std(){ return Hazarda.next(); }
+    /**
+     * Fixes the uniform integer number generator to the interval [0,max)
+     * @param max Sup limit
+     */
+    public void set( double max ){ set( 0.0, max ); }
+
+    /**
+     * Fixes the uniform integer number generator to the interval [min,max)
+     * @param min Low limit
+     * @param max Sup limit
+     */
+    public void set(double min, double max ){
+	this.min = min;
+	this.length = max-min; 
+    }
+	
+    /**
+     * Generates the integer number in the interval [min,max) associated to the real number x in [0,1)
+     * @return The integer number in the interval [min,max) associated to the real number x in [0,1)
+     */
+    @Override
+    public double next() { return min + Hazarda.uniform(length); }
 }

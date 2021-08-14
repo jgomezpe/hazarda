@@ -38,6 +38,8 @@
  */
 package hazarda.real;
 
+import hazarda.Hazarda;
+
 /**
  * <p>Title: Symmetric</p>
  *
@@ -46,40 +48,23 @@ package hazarda.real;
  *
  */
 public class Symmetric implements Random {
-	/**
-	 * Boolean random distribution for the side.
-	 */
-	protected hazarda.bit.Random side;
-	/**
-	 * One side real random number distribution for values
-	 */
-	protected Random one_side;
+    /**
+     * One side real random number distribution for values
+     */
+    protected Random one_side;
 	
-	/**
-	 * Creates a symmetric real numbers random distribution with a side probability of 0.5 and a [0,1) uniform distribution, i.e., 
-	 * this distribution will generate uniform real numbers in the interval (-1, 1)  
-	 */
-	public Symmetric(){ this( new Uniform()); }
-	/**
-	 * Creates a symmetric real numbers random distribution with a side probability of 0.5 and the given one side distribution
-	 * @param one_side One side real random number distribution for values
-	 */
-	public Symmetric( Random one_side ){ this( new hazarda.bit.Random(), one_side ); }
-	
-	/**
-	 * Creates a symmetric real numbers random distribution with the given side and one side distribution
-	 * @param side Boolean random distribution for the side.
-	 * @param one_side One side real random number distribution for values
-	 */
-	public Symmetric( hazarda.bit.Random side, Random one_side ){
-		this.side = side;
-		this.one_side = one_side;
-	}
+    /**
+     * Creates a symmetric real numbers random distribution with a side probability of 0.5 and the given one side distribution
+     * @param one_side One side real random number distribution for values
+     */
+    public Symmetric( Random one_side ){ 
+	this.one_side = one_side;
+    }
 	
    /**
      * Returns a random double number
      * @return A random double number
      */
     @Override
-    public double next(){ return side.next()?one_side.next():-one_side.next(); }  
+    public double next(){ return Hazarda.bool()?one_side.next():-one_side.next(); }  
 }
