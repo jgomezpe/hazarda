@@ -1,5 +1,11 @@
 # hazarda
-A Random Number Generation Library
+A Random Number Generation Library. Generates numbers and data following diverse distributions (Gaussian, Power Law, Uniform, Roulette). Creates random set partitions, Shuffles sets. Selects element from sets following quality measures defined over them.
+&nbsp;Requires:
+
+&nbsp;kerno.jar, speco.jar, and kompari.jar
+
+&nbsp;Available at <A HREF="https://github.com/jgomezpe/libs/">https://github.com/jgomezpe/libs/</A>
+
 <h3>Version 1.0</h3>
 <h3>Copyright (c)</h3>
 &nbsp;Author: <A HREF="https://disi.unal.edu.co/~jgomezpe/"> Jonatan Gomez-Perdomo </A>
