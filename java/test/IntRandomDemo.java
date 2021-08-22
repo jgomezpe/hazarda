@@ -36,35 +36,28 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package hazarda.real;
+package test;
 
 import hazarda.Hazarda;
 
 /**
- * <p>Title: Symmetric</p>
+ * <p>Title: IntRandomDemo</p>
  *
- * <p>Description: Generates random real numbers by combining a one side real random number distribution (for the value) and
- *  a boolean random distribution for the side.The one side distribution must be able to generate number in R+ = [0, inf)</p>
+ * <p>Description: Random integer demo.</p>
  *
  */
-public class Symmetric implements Random {
-    /**
-     * One side real random number distribution for values
-     */
-    protected Random one_side;
-	
-    /**
-     * Creates a symmetric real numbers random distribution with a side probability of 0.5 and the given one side distribution
-     * @param one_side One side real random number distribution for values
-     */
-    public Symmetric( Random one_side ){ 
-	this.one_side = one_side;
-    }
-	
-   /**
-     * Returns a random double number
-     * @return A random double number
-     */
-    @Override
-    public double next(){ return Hazarda.bool()?one_side.next():-one_side.next(); }  
+public class IntRandomDemo {
+	public static void main( String[] args ){
+		// Random g = uniform();
+		int n = 10;
+		// Generating an array of ten random values
+		for( int i=0; i<n; i++ ){
+			System.out.println( Hazarda.uniform(0,100) );
+		}
+		System.out.println("****************");
+		double[] p = new double[]{0.4,0.3,0.2,0.1}; //Roulette generation of  n integer numbers
+		for( int i=0; i<n; i++ ){
+			System.out.println( Hazarda.roulette(p) );
+		}		
+	}
 }

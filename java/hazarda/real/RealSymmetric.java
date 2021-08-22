@@ -1,6 +1,4 @@
 /**
- * <p>Hazarda: Random methods and definitions.</p>
- *
  * <p>Copyright: Copyright (c) 2019</p>
  *
  * <h3>License</h3>
@@ -38,4 +36,33 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package hazarda;
+package hazarda.real;
+
+import hazarda.Hazarda;
+
+/**
+ * <p>Title: RealSymmetric</p>
+ *
+ * <p>Description: Generates random real numbers by combining a one side real random number distribution (for the value) and
+ *  a boolean random distribution for the side.The one side distribution must be able to generate number in R+ = [0, inf)</p>
+ *
+ */
+public class RealSymmetric implements RealRandom {
+	/**
+	 * One side real random number distribution for values
+	 */
+	protected RealRandom one_side;
+	
+	/**
+	 * Creates a symmetric real numbers random distribution with a side probability of 0.5 and the given one side distribution
+	 * @param one_side One side real random number distribution for values
+	 */
+	public RealSymmetric( RealRandom one_side ){ this.one_side = one_side; }
+	
+	/**
+	 * Returns a random double number
+	 * @return A random double number
+	 */
+	@Override
+	public double next(){ return Hazarda.bool()?one_side.next():-one_side.next(); }  
+}

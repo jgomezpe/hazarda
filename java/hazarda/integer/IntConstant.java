@@ -38,61 +38,28 @@
  */
 package hazarda.integer;
 
-import hazarda.Hazarda;
-
 /**
- * <p>Title: UniformInt</p>
+ * <p>Title: IntConstant</p>
  *
- * <p>Description: Generates integer numbers following an uniform probability distribution</p>
+ * <p>Description: Generates the same constant integer.</p>
  *
  */
-public class Uniform implements Random{
+public class IntConstant implements IntRandom{
+	/**
+	 * Constant value to generate
+	 */
+	protected int v;
+    
+	/**
+	 * Creates a constant value generator
+	 * @param v Constant value to generate
+	 */
+	public IntConstant(int v) { this.v = v; }
+    
     /**
-     * Low Limit
-     */
-    protected int min;
-
-    /**
-     * Interval Length
-     */
-    protected int length;
-	
-    /**
-     * Creates a uniform integer number generator in the interval [0,max)
-     * @param max Sup Limit
-     */
-    public Uniform(int max){ this( 0, max ); }
-	
-    /**
-     * Creates a uniform integer number generator in the interval [min,max)
-     * @param min Low limit
-     * @param max Sup limit
-     */
-    public Uniform(int min, int max) {
-	this.min = min;
-	this.length = max - min;
-    }
-	
-    /**
-     * Fixes the uniform integer number generator to the interval [0,max)
-     * @param max Sup limit
-     */
-    public void set( int max ){ set( 0, max ); }
-
-    /**
-     * Fixes the uniform integer number generator to the interval [min,max)
-     * @param min Low limit
-     * @param max Sup limit
-     */
-    public void set( int min, int max ){
-	this.min = min;
-	this.length = max-min; 
-    }
-	
-    /**
-     * Generates the integer number in the interval [min,max) associated to the real number x in [0,1)
-     * @return The integer number in the interval [min,max) associated to the real number x in [0,1)
-     */
-    @Override
-    public int next() {	return min + Hazarda.uniform(length);	}
+     * Returns a constant integer number
+     * @return Constant integer number
+     */	
+	@Override
+	public int next() { return v; }
 }

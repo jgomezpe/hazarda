@@ -1,6 +1,4 @@
 /**
- * <p>Hazarda: Random methods and definitions.</p>
- *
  * <p>Copyright: Copyright (c) 2019</p>
  *
  * <h3>License</h3>
@@ -38,4 +36,30 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package hazarda;
+package hazarda.real;
+
+/**
+ * <p>Title: RealConstant</p>
+ *
+ * <p>Description: Generates the same constant double.</p>
+ *
+ */
+public class RealConstant implements RealRandom{
+	/**
+	 * Constant value to generate
+	 */
+	protected double v;
+    
+	/**
+	 * Creates a constant value generator
+	 * @param v Constant value to generate
+	 */
+	public RealConstant(double v) { this.v = v; }
+    
+    /**
+     * Returns a constant double number
+     * @return Constant double number
+     */	
+	@Override
+	public double next() { return v; }
+}

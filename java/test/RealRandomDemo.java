@@ -1,6 +1,4 @@
 /**
- * <p>Hazarda: Random methods and definitions.</p>
- *
  * <p>Copyright: Copyright (c) 2019</p>
  *
  * <h3>License</h3>
@@ -38,4 +36,37 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package hazarda;
+package test;
+
+import hazarda.Hazarda;
+
+/**
+ * <p>Title: RealRandomDemo</p>
+ *
+ * <p>Description: Random real demo.</p>
+ *
+ */
+public class RealRandomDemo{      
+	public static void main( String[] args ){
+	    System.out.println("*********Raw generator [0.0,1.0)**********");
+	    double[] x = Hazarda.next(100);
+	    for( int i=0; i<x.length; i++ ){
+		System.out.println( x[i] );
+	    }
+	    
+	    System.out.println("*********Uniform generator [-5.0,5.0)**********");
+	    for( int i=0; i<100; i++ ){
+		System.out.println( Hazarda.uniform(-5.0, 5.0) );
+	    }
+	    
+	    System.out.println("*********Gauss generator N(0.0,1.0)**********");
+	    for( int i=0; i<100; i++ ){
+		System.out.println( Hazarda.gaussian() );
+	    }
+
+	    System.out.println("*********Power Law generator PL(2.0,1.0,0.0)**********");
+	    for( int i=0; i<100; i++ ){
+		System.out.println( Hazarda.powerlaw() );
+	    }
+	}    
+}

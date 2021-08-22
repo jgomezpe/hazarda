@@ -38,53 +38,40 @@
  */
 package hazarda.real;
 
-import hazarda.Hazarda;
-
 /**
- * <p>Title: UniformReal</p>
+ * <p>Title: RealRandom</p>
  *
- * <p>Description: Generates random real numbers with uniform distribution.</p>
+ * <p>Description: Abstract double random generator.</p>
  *
  */
-public class Uniform implements Random{
-    protected double min;
-    protected double length;
-    /**
-     * Constructor: Creates a uniform random number generator that generates numbers in the interval [0, max)
-     * @param max Right side of the close open interval (not included)
-     */
-    public Uniform(double max){ this(0.0, max); }
-
-    /**
-     * Constructor: Creates a uniform random number generator that generates numbers in the interval [minVal, maxVal)
-     * @param min Left limit of the interval
-     * @param max Right limit of the interval
-     */
-    public Uniform(double min, double max) { 
-	this.min = min;
-	this.length = max-length;
-    }
-
-    /**
-     * Fixes the uniform integer number generator to the interval [0,max)
-     * @param max Right limit of the interval
-     */
-    public void set( double max ){ set( 0.0, max ); }
-
-    /**
-     * Fixes the uniform integer number generator to the interval [min,max)
-     * @param min Left limit of the interval
-     * @param max Right limit of the interval
-     */
-    public void set(double min, double max ){
-	this.min = min;
-	this.length = max-min; 
-    }
+public interface RealRandom{
+	/**
+	 * Returns a random double number
+	 * @return Random double number
+	 */
+	double next();
 	
-    /**
-     * Generates the integer number in the interval [min,max) associated to the real number x in [0,1)
-     * @return The integer number in the interval [min,max) associated to the real number x in [0,1)
-     */
-    @Override
-    public double next() { return min + Hazarda.uniform(length); }
+	/**
+	 * Returns a set of random double numbers
+	 * @param v Array where random numbers will be stored
+	 * @param offset Initial position for storing the generated real numbers
+	 * @param m The total number of random numbers
+	 */
+	default void generate(double[] v, int offset, int m) {	
+		for (int i=0; i<m; i++) v[i+offset] = this.next();
+	}
+
+	/**
+	 * Returns a set of random double numbers
+	 * @param m The total number of random numbers
+	 * @return A set of m random double numbers
+	 */
+	default double[] generate(int m) {
+		double[] v = null;
+		if (m > 0) {
+			v = new double[m];                  
+			generate( v, 0, m );
+		}
+		return v;
+	}
 }

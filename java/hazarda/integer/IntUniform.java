@@ -1,6 +1,4 @@
 /**
- * <p>Hazarda: Random methods and definitions.</p>
- *
  * <p>Copyright: Copyright (c) 2019</p>
  *
  * <h3>License</h3>
@@ -38,4 +36,63 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package hazarda;
+package hazarda.integer;
+
+import hazarda.Hazarda;
+
+/**
+ * <p>Title: IntUniform</p>
+ *
+ * <p>Description: Generates integer numbers following an uniform probability distribution</p>
+ *
+ */
+public class IntUniform implements IntRandom{
+	/**
+	 * Low Limit
+	 */
+	protected int min;
+
+	/**
+	 * Interval Length
+	 */
+	protected int length;
+	
+	/**
+	 * Creates a uniform integer number generator in the interval [0,max)
+	 * @param max Upper Limit
+	 */
+	public IntUniform(int max){ this( 0, max ); }
+	
+	/**
+	 * Creates a uniform integer number generator in the interval [min,max)
+	 * @param min Lower limit
+	 * @param max Upper limit
+	 */
+	public IntUniform(int min, int max) {
+		this.min = min;
+		this.length = max - min;
+	}
+	
+	/**
+	 * Fixes the uniform integer number generator to the interval [0,max)
+	 * @param max Sup limit
+	 */
+	public void set( int max ){ set( 0, max ); }
+
+	/**
+	 * Fixes the uniform integer number generator to the interval [min,max)
+	 * @param min Low limit
+	 * @param max Sup limit
+	 */
+	public void set( int min, int max ){
+		this.min = min;
+		this.length = max-min; 
+	}
+	
+	/**
+	 * Generates the integer number in the interval [min,max) associated to the real number x in [0,1)
+	 * @return The integer number in the interval [min,max) associated to the real number x in [0,1)
+	 */
+	@Override
+	public int next() {	return min + Hazarda.uniform(length);	}
+}

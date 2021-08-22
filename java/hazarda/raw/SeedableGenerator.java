@@ -48,73 +48,60 @@ import java.util.*;
  *
  */
 public abstract class SeedableGenerator implements RawGenerator {
+	/**
+	 * Generators Seed
+	 */
+	protected long seed;
 
-    /**
-     * Generators Seed
-     */
-    protected long seed;
+	/**
+	 * Creates a seedable generator with a time dependent seed (using the current time)
+	 */
+	public SeedableGenerator() { this.initSeed(); }
 
-    /**
-     * Creates a seedable generator with a time dependent seed (using the current time)
-     */
-    public SeedableGenerator() {
-        this.initSeed();
-    }
+	/**
+	 * Creates a seedable generator with the given time dependent seed
+	 * @param seed The time information used for defining the seed
+	 */
+	public SeedableGenerator(Date seed) { this.initSeed(seed.getTime()); }
 
-    /**
-     * Creates a seedable generator with the given time dependent seed
-     * @param seed The time information used for defining the seed
-     */
-    public SeedableGenerator(Date seed) {
-        this.initSeed(seed.getTime());
-    }
+	/**
+	 * Creates a seedable generator with the given seed
+	 * @param seed The seed
+	 */
+	public SeedableGenerator(long seed) { this.initSeed(seed); }
 
-    /**
-     * Creates a seedable generator with the given seed
-     * @param seed The seed
-     */
-    public SeedableGenerator(long seed) {
-        this.initSeed(seed);
-    }
+	/**
+	 *
+	 * Returns a seed calculated from the current date.
+	 * @return a long integer seed
+	 *
+	 */
+	public long initSeed() { return this.initSeed((new Date()).getTime()); }
 
-    /**
-     *
-     * Returns a seed calculated from the current date.
-     * @return a long integer seed
-     *
-     */
-    public long initSeed() {
-        return this.initSeed((new Date()).getTime());
-    }
+	/**
+	 *
+	 * Returns a seed calculated from a given date.
+	 * @param seed Time information used for determining the seed
+	 * @return a long integer seed
+	 *
+	 */
+	public long initSeed(Date seed) { return this.initSeed(seed.getTime()); }
 
-    /**
-     *
-     * Returns a seed calculated from a given date.
-     * @param seed Time information used for determining the seed
-     * @return a long integer seed
-     *
-     */
-    public long initSeed(Date seed) {
-        return this.initSeed(seed.getTime());
-    }
+	/**
+	 *
+	 * Returns a seed calculated from a given seed
+	 * @param seed The seed
+	 * @return a long integer seed (actually, returns the given seed) 
+	 *
+	 */
+	public long initSeed(long seed) {
+		this.seed = seed;
+		return seed;
+	}
 
-    /**
-     *
-     * Returns a seed calculated from a given seed
-     * @param seed The seed
-     * @return a long integer seed (actually, returns the given seed) 
-     *
-     */
-    public long initSeed(long seed) {
-        this.seed = seed;
-        return seed;
-    }
-
-    /**
-     * Returns the seed used by the generator
-     * @return Seed used by the generator
-     */
-    public long getSeed() {
-        return seed;
-    }
+	/**
+	 * Returns the seed used by the generator
+	 * @return Seed used by the generator
+	 */
+	public long getSeed() { return seed; }
 }

@@ -41,28 +41,28 @@ package hazarda.bit;
 import hazarda.Hazarda;
 
 /**
- * <p>Title: RandBit</p>
+ * <p>Title: BitRandom</p>
  *
  * <p>Description: Generates boolean values randomly.</p>
  *
  */
-public class Random{
+public class BitRandom{
 	/**
 	 * Probability of generating a <i>false</i> value
-	 */
+	 */	
 	protected double falseProbability;
 	
 	/**
 	 * Creates a boolean generator with the same probability of generating a <i>true</i> and <i>false</i> value
 	 */
-	public Random(){ this(0.5); }
+	public BitRandom(){ this(0.5); }
 	
 	/**
 	 * Creates a boolean generator with the given probability of generating a <i>false</i> value (1.0-falseProbability) is
 	 * the probability of generating a <i>true</i> value
 	 * @param falseProbability Probability of generating a <i>false</i> value
 	 */
-	public Random(double falseProbability ){ this.falseProbability = falseProbability; }
+	public BitRandom(double falseProbability ){ this.falseProbability = falseProbability; }
 	
 	/**
 	 * Produces a boolean value according to the stored probability distribution

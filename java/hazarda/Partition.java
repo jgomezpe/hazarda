@@ -47,69 +47,75 @@ import java.util.Iterator;
  *
  */
 public class Partition {
-    /**
-     * Random distribution of index
-     */
-    protected int[] index = null;
+	/**
+	 * Random distribution of index
+	 */
+	protected int[] index = null;
 
-    /**
-     * Number of groups
-     */
-    protected int m; 
+	/**
+	 * Number of groups
+	 */
+	protected int m; 
     
-    /**
-     * Creates a random partition of <i>m</i> groups equal size from a set of <i>n</i> elements 
-     * @param n Number of elements to be partitioned (will be indexed 0,...,n-1)
-     * @param m Number of groups in the partition 
-     */
-    public Partition(int n, int m) {
-	this(Hazarda.permutation(n), m);
-    }
+	/**
+	 * Creates a random partition of <i>m</i> groups equal size from a set of <i>n</i> elements 
+	 * @param n Number of elements to be partitioned (will be indexed 0,...,n-1)
+	 * @param m Number of groups in the partition 
+	 */
+	public Partition(int n, int m) { this(Hazarda.permutation(n), m); }
     
-    /**
-     * Creates a partition of <i>m</i> groups equal size from a set of elements 
-     * @param set Elements to be partitioned
-     * @param m Number of groups in the partition 
-     */
-    public Partition(int[] set, int m) {
-	this.index = set;
-	this.m = m;
-    }
+	/**
+	 * Creates a partition of <i>m</i> groups equal size from a set of elements 
+	 * @param set Elements to be partitioned
+	 * @param m Number of groups in the partition 
+	 */
+	public Partition(int[] set, int m) {
+		this.index = set;
+		this.m = m;
+	}
     
-    public Iterator<Integer> group(int k){
-	return new Iterator<Integer>() {
-	    protected int pos=k;
+	/**
+	 * Gets an iterator over the <i>k</i>th group in the partition
+	 * @param k Group to be iterated
+	 * @return Iterator over the <i>k</i>th group in the partition
+	 */
+	public Iterator<Integer> group(int k){
+		return new Iterator<Integer>() {
+			protected int pos=k;
 
-	    @Override
-	    public boolean hasNext() {
-		return pos<index.length;
-	    }
+			@Override
+			public boolean hasNext() { return pos<index.length; }
 
-	    @Override
-	    public Integer next() {
-		int i=index[pos];
-		pos+=m;
-		return i;
-	    }
-	};
-    }
+			@Override
+			public Integer next() {
+				int i=index[pos];
+				pos+=m;
+				return i;
+			}
+		};
+	}
 
-    public Iterator<Integer> skip_group(int k){
-	return new Iterator<Integer>() {
-	    protected int pos=0;
+	/**
+	 * Gets an iterator over the set without the <i>k</i>th group in the partition
+	 * @param k Group to be skipped
+	 * @return Iterator over the set without the <i>k</i>th group in the partition
+	 */
+	public Iterator<Integer> skip_group(int k){
+		return new Iterator<Integer>() {
+			protected int pos=0;
 
-	    @Override
-	    public boolean hasNext() {
-		if(pos%k==0) pos++;
-		return pos<index.length;
-	    }
+			@Override
+			public boolean hasNext() {
+				if(pos%k==0) pos++;
+				return pos<index.length;
+			}
 
-	    @Override
-	    public Integer next() {
-		int i=index[pos];
-		pos+=m;
-		return i;
-	    }
-	};
-    }
+			@Override
+			public Integer next() {
+				int i=index[pos];
+				pos+=m;
+				return i;
+			}
+		};
+	}
 }

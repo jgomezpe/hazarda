@@ -1,6 +1,4 @@
 /**
- * <p>Hazarda: Random methods and definitions.</p>
- *
  * <p>Copyright: Copyright (c) 2019</p>
  *
  * <h3>License</h3>
@@ -38,4 +36,37 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package hazarda;
+package test;
+
+import hazarda.Hazarda;
+
+/**
+ * <p>Title: BitRandomDemo</p>
+ *
+ * <p>Description: Random bit demo.</p>
+ *
+ */
+public class BitRandomDemo {
+    public static void main( String[] args ){
+	// false is generated with probability 0.7
+	// true is generated with probability 0.3
+	int n = 100;
+	// Generating an array of ten random values
+	int count = 0;
+	for( int i=0; i<n; i++ ) {
+	    boolean b = Hazarda.bool(0.7);
+	    System.out.println(b);
+	    if(b) count++;
+	}
+	System.out.println(count);
+	System.out.println("****************");
+	count = 0;
+	// Generating ten random values (equal probability)
+	for( int i=0; i<n; i++ ){
+	    boolean b = Hazarda.bool();
+	    System.out.println(b);
+	    if(b) count++;
+	}		
+	System.out.println(count);
+    }
+}

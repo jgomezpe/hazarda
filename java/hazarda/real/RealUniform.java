@@ -38,36 +38,61 @@
  */
 package hazarda.real;
 
+import hazarda.Hazarda;
+
 /**
- * <p>Title: RandReal</p>
+ * <p>Title: RealUniform</p>
  *
- * <p>Description: Abstract random number generator.</p>
+ * <p>Description: Generates random real numbers with uniform distribution.</p>
  *
  */
-public interface Random{
-    double next();
-	
-    /**
-     * Returns a set of random double numbers
-     * @param v Array where random numbers will be stored
-     * @param offset Initial position for storing the generated real numbers
-     * @param m The total number of random numbers
-     */
-    default void generate(double[] v, int offset, int m) {
-	for (int i=0; i<m; i++) v[i+offset] = this.next();
-    }
+public class RealUniform implements RealRandom{
+	/**
+	 * Lower limit of interval (not included)
+	 */
+	protected double min;
 
-    /**
-     * Returns a set of random double numbers
-     * @param m The total number of random numbers
-     * @return A set of m random double numbers
-     */
-    default double[] generate(int m) {
-	double[] v = null;
-	if (m > 0) {
-	    v = new double[m];                  
-	    generate( v, 0, m );
+	/**
+    * Upper limit of the interval
+    */
+	protected double length;
+
+	/**
+	 * Constructor: Creates a uniform random number generator that generates numbers in the interval [0, max)
+	 * @param max Upper limit of the interval (not included)
+	 */
+	public RealUniform(double max){ this(0.0, max); }
+
+	/**
+	 * Constructor: Creates a uniform random number generator that generates numbers in the interval [minVal, maxVal)
+	 * @param max Upper limit of the interval (not included)
+	 * @param min Lower limit of the interval
+	 */
+	public RealUniform(double min, double max) { 
+		this.min = min;
+		this.length = max-length;
 	}
-	return v;
-    }
+
+	/**
+	 * Fixes the uniform integer number generator to the interval [0,max)
+	 * @param max Upper limit of the interval (not included)
+	 */
+	public void set( double max ){ set( 0.0, max ); }
+
+	/**
+	 * Fixes the uniform integer number generator to the interval [min,max)
+ 	 * @param max Upper limit of the interval (not included)
+	 * @param min Lower limit of the interval
+    */
+	public void set(double min, double max ){
+		this.min = min;
+		this.length = max-min; 
+	}
+	
+	/**
+	 * Generates the integer number in the interval [min,max) associated to the real number x in [0,1)
+	 * @return The integer number in the interval [min,max) associated to the real number x in [0,1)
+	 */
+	@Override
+	public double next() { return min + Hazarda.uniform(length); }
 }

@@ -1,6 +1,4 @@
 /**
- * <p>Hazarda: Random methods and definitions.</p>
- *
  * <p>Copyright: Copyright (c) 2019</p>
  *
  * <h3>License</h3>
@@ -38,4 +36,43 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package hazarda;
+package hazarda.integer;
+
+
+/**
+ * <p>Title: IntRandom</p>
+ *
+ * <p>Description: Generates integer values randomly.</p>
+ *
+ */
+public interface IntRandom{	
+	/**
+	 * Returns a random integer number
+	 * @return Random integer number
+	 */	
+	int next();
+	
+	/**
+	 * Returns a set of random integer numbers
+	 * @param v Array where integer numbers will be stored
+	 * @param offset Initial position for storing the generated integers
+	 * @param m The total number of integer numbers
+	 */
+	default void generate(int[] v, int offset, int m) {
+		for (int i = 0; i < m; i++) v[i+offset] = next();
+	}
+	
+	/**
+	 * Returns a set of random integer numbers
+	 * @param m The total number of random integer numbers
+	 * @return A set of m random integer numbers
+	 */
+	default int[] generate(int m) {
+		int[] v = null;
+		if (m > 0) {
+			v = new int[m];
+			generate(v, 0,  m);
+		}
+		return v;
+	}    
+}

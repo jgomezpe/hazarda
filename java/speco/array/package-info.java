@@ -1,5 +1,5 @@
 /**
- * <p>Hazarda: Random methods and definitions.</p>
+ * <p>Array data structures. (Shuffle)</p>
  *
  * <p>Copyright: Copyright (c) 2019</p>
  *
@@ -38,4 +38,4 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package hazarda;
+package speco.array;
