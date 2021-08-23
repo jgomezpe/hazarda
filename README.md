@@ -16,7 +16,7 @@ A Random Number Generation Library. Generates numbers and data following diverse
 
 &nbsp;Source code: <A HREF="https://github.com/jgomezpe/hazarda/">https://github.com/jgomezpe/hazarda/</A>
 
-&nbsp;API documentation: <A HREF="https://numtseng.com/api/hazarda/">https://numtseng.com/api/hazarda/</A>
+&nbsp;API documentation: <A HREF="https://numtseng.com/api/java/hazarda/">https://numtseng.com/api/java/hazarda/</A>
 
 
 <h3>Licence</h3>
