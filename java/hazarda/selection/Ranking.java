@@ -40,8 +40,8 @@ package hazarda.selection;
 
 import speco.jxon.JXON;
 import kompari.real.RealOrder;
-import kompari.real.H2LOrder;
-import kompari.real.L2HOrder;
+import kompari.real.RealH2LOrder;
+import kompari.real.RealL2HOrder;
 import speco.array.Array;
 import speco.array.SortedArrayMultiSet;
 
@@ -86,7 +86,7 @@ public class Ranking implements Selection {
 	 */
 	@Override
 	public int[] natural(int n, double[] q) {
-		return apply(n, q, new L2HOrder());
+		return apply(n, q, new RealL2HOrder());
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class Ranking implements Selection {
 	 */
 	@Override
 	public int[] reversed(int n, double[] q) {
-		return apply(n, q, new H2LOrder());
+		return apply(n, q, new RealH2LOrder());
 	}
 
 	/**

@@ -40,8 +40,8 @@ package hazarda.selection;
 
 import hazarda.integer.Roulette;
 import speco.jxon.JXON;
-import kompari.real.H2LOrder;
-import kompari.real.L2HOrder;
+import kompari.real.RealH2LOrder;
+import kompari.real.RealL2HOrder;
 import kompari.real.RealOrder;
 import speco.array.Array;
 import speco.array.SortedArrayMultiSet;
@@ -123,7 +123,7 @@ public class Elitism implements Selection{
 	 * @return Selected elements
 	 */
 	@Override
-	public int[] natural(int n, double[] q) { return apply(n, q, new H2LOrder()); }
+	public int[] natural(int n, double[] q) { return apply(n, q, new RealH2LOrder()); }
 
 	/**
 	 * Selects <i>n</i> elements according to their 'reversed' quality measure
@@ -132,7 +132,7 @@ public class Elitism implements Selection{
 	 * @return Selected elements
 	 */
 	@Override
-	public int[] reversed(int n, double[] q) { return apply(n, q, new L2HOrder()); }
+	public int[] reversed(int n, double[] q) { return apply(n, q, new RealL2HOrder()); }
  
 	/**
 	 * Configures the selection according to the JXON information
