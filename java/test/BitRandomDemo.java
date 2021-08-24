@@ -41,9 +41,7 @@ package test;
 import hazarda.Hazarda;
 
 /**
- * <p>Title: BitRandomDemo</p>
- *
- * <p>Description: Random bit demo.</p>
+ * <p>Random bit demo.</p>
  *
  */
 public class BitRandomDemo {

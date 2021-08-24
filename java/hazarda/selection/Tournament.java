@@ -42,9 +42,7 @@ import hazarda.Hazarda;
 import speco.jxon.JXON;
 
 /**
- * <p>Title: Tournament</p>
- *
- * <p>Description: A tournament selection mechanism.</p>
+ * <p>A tournament selection mechanism.</p>
  *
  */
 public class Tournament implements Selection{

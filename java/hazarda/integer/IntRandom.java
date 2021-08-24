@@ -40,9 +40,7 @@ package hazarda.integer;
 
 
 /**
- * <p>Title: IntRandom</p>
- *
- * <p>Description: Generates integer values randomly.</p>
+ * <p>Generates integer values randomly.</p>
  *
  */
 public interface IntRandom{	

@@ -47,9 +47,7 @@ import speco.array.Array;
 import speco.array.SortedArrayMultiSet;
 
 /**
- * <p>Title: Elitisn</p>
- *
- * <p>Description: An elitist selection mechanism.</p>
+ * <p>An elitist selection mechanism.</p>
  *
  */
 public class Elitism implements Selection{

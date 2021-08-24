@@ -41,9 +41,7 @@ package hazarda.bit;
 import hazarda.Hazarda;
 
 /**
- * <p>Title: BitRandom</p>
- *
- * <p>Description: Generates boolean values randomly.</p>
+ * <p>Generates random boolean values.</p>
  *
  */
 public class BitRandom{

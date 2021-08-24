@@ -41,9 +41,7 @@ package hazarda.real;
 import hazarda.Hazarda;
 
 /**
- * <p>Title: PowerLaw</p>
- *
- * <p>Description: Generates real numbers following a Generalized Power Law distribution.</p>
+ * <p>Generates real numbers following a Generalized Power Law distribution.</p>
  *
  */
 public class PowerLaw implements RealRandom{

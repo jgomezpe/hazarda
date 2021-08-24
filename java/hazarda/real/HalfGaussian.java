@@ -41,9 +41,7 @@ package hazarda.real;
 import hazarda.Hazarda;
 
 /**
- * <p>Title: HalfGaussian</p>
- *
- * <p>Description: Generates real numbers following a Half Gaussian distribution.</p>
+ * <p>Generates real numbers following a Half Gaussian distribution.</p>
  *
  */
 public class HalfGaussian extends Gaussian{

@@ -46,9 +46,7 @@ import speco.array.Array;
 import speco.array.SortedArrayMultiSet;
 
 /**
- * <p>Title: Ranking</p>
- *
- * <p>Description: A ranking selection method.</p>
+ * <p>A ranking selection method.</p>
  *
  */
 public class Ranking implements Selection {

@@ -41,9 +41,7 @@ package hazarda.raw;
 import java.util.*;
 
 /**
- * <p>Title: SeedableGenerator</p>
- *
- * <p>Description: Abstract definition of a RawGenerator that uses a seed for generating uniform distributed pseudo random numbers in the interval [0.0,1.0) (x~U[0,1)). 
+ * <p>Abstract definition of a RawGenerator that uses a seed for generating uniform distributed pseudo random numbers in the interval [0.0,1.0) (x~U[0,1)). 
  * It is similar to the seedable class definition in the RangPack library.</p>
  *
  */

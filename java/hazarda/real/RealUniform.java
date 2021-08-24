@@ -41,9 +41,7 @@ package hazarda.real;
 import hazarda.Hazarda;
 
 /**
- * <p>Title: RealUniform</p>
- *
- * <p>Description: Generates random real numbers with uniform distribution.</p>
+ * <p>Generates random real numbers with uniform distribution.</p>
  *
  */
 public class RealUniform implements RealRandom{

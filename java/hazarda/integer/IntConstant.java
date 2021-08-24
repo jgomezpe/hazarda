@@ -39,9 +39,7 @@
 package hazarda.integer;
 
 /**
- * <p>Title: IntConstant</p>
- *
- * <p>Description: Generates the same constant integer.</p>
+ * <p>Generates the same constant integer.</p>
  *
  */
 public class IntConstant implements IntRandom{

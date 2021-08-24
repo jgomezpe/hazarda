@@ -48,9 +48,7 @@ import hazarda.raw.rngpack.Ranlux;
 import hazarda.raw.rngpack.Ranmar;
 
 /**
- * <p>Title: Hazarda</p>
- *
- * <p>Description: Random functions.</p>
+ * <p>Random functions.</p>
  *
  */
 public class Hazarda{

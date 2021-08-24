@@ -39,9 +39,7 @@
 package hazarda.real;
 
 /**
- * <p>Title: RealRandom</p>
- *
- * <p>Description: Abstract double random generator.</p>
+ * <p>Abstract double random generator.</p>
  *
  */
 public interface RealRandom{

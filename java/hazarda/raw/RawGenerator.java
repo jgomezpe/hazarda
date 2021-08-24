@@ -39,9 +39,7 @@
 package hazarda.raw;
 
 /**
- * <p>Title: RawGenerator</p>
- *
- * <p>Description: Abstract class. It is a generator of uniform distributed pseudo random numbers in the interval [0.0,1.0) (x~U[0,1)).
+ * <p>Abstract class. It is a generator of uniform distributed pseudo random numbers in the interval [0.0,1.0) (x~U[0,1)).
  *  It has some useful methods for generating boolean values and uniform distributed integers. </p>
  *
  */

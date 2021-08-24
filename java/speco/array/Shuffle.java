@@ -41,9 +41,7 @@ package speco.array;
 import hazarda.Hazarda;
 
 /**
- * <p>Title: Shuffle</p>
- *
- * <p>Description: Shuffles an array.</p>
+ * <p>Shuffles an array.</p>
  *
  */
 public class Shuffle {

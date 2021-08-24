@@ -39,9 +39,7 @@
 package hazarda.raw;
 
 /**
- * <p>Title: JavaGenerator</p>
- *
- * <p>Description: Wrap of the Java Standard Generator (Math.random()) of Uniform Distributed pseudo Random Numbers in the interval [0.0,1.0) (x~U[0,1)).</p>
+ * <p>Wrap of the Java Standard Generator (Math.random()) of Uniform Distributed pseudo Random Numbers in the interval [0.0,1.0) (x~U[0,1)).</p>
  *
  */
 public class JavaGenerator implements RawGenerator {

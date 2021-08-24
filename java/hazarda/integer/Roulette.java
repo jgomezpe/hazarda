@@ -41,9 +41,7 @@ package hazarda.integer;
 import hazarda.Hazarda;
 
 /**
- * <p>Title: Roulette</p>
- *
- * <p>Description: Generates integer numbers following a Weighted probability density (Roulette)</p>
+ * <p>Generates integer numbers following a Weighted probability density (Roulette)</p>
  *
  */
 public class Roulette implements IntRandom{

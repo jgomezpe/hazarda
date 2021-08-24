@@ -41,9 +41,7 @@ package test;
 import hazarda.Hazarda;
 
 /**
- * <p>Title: ShuffleDemo</p>
- *
- * <p>Description: Shuffle demo.</p>
+ * <p>Shuffle demo.</p>
  *
  */
 public class ShuffleDemo {

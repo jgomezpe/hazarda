@@ -41,9 +41,7 @@ package hazarda.selection;
 import speco.object.Configurable;
 
 /**
- * <p>Title: Selection</p>
- *
- * <p>Description: A selection mechanism according to some real quality measure.</p>
+ * <p>A selection mechanism according to some real quality measure.</p>
  *
  */
 public interface Selection extends Configurable {

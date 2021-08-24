@@ -41,9 +41,7 @@ package hazarda.integer;
 import hazarda.Hazarda;
 
 /**
- * <p>Title: IntUniform</p>
- *
- * <p>Description: Generates integer numbers following an uniform probability distribution</p>
+ * <p>Generates integer numbers following an uniform probability distribution</p>
  *
  */
 public class IntUniform implements IntRandom{

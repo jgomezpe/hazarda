@@ -41,9 +41,7 @@ package hazarda;
 import java.util.Iterator;
 
 /**
- * <p>Title: Partition</p>
- *
- * <p>Description: Random partition of a set.</p>
+ * <p>Random set partition.</p>
  *
  */
 public class Partition {

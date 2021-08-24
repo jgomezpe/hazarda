@@ -42,9 +42,7 @@ import kompari.integer.IntOrder;
 import kompari.real.RealOrder;
 
 /**
- * <p>Title: IndexOrderQ</p>
- *
- * <p>Description: Order over a quality measure array that provides their associated indices.</p>
+ * <p>Order defined over a quality measure array that provides their associated indices.</p>
  *
  */
 public class IndexQOrder implements IntOrder{

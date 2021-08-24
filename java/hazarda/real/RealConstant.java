@@ -39,9 +39,7 @@
 package hazarda.real;
 
 /**
- * <p>Title: RealConstant</p>
- *
- * <p>Description: Generates the same constant double.</p>
+ * <p>Generates the same constant double.</p>
  *
  */
 public class RealConstant implements RealRandom{

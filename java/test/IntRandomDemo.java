@@ -41,9 +41,7 @@ package test;
 import hazarda.Hazarda;
 
 /**
- * <p>Title: IntRandomDemo</p>
- *
- * <p>Description: Random integer demo.</p>
+ * <p>Random integer demo.</p>
  *
  */
 public class IntRandomDemo {

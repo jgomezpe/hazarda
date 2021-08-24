@@ -41,9 +41,7 @@ package test;
 import hazarda.Hazarda;
 
 /**
- * <p>Title: RealRandomDemo</p>
- *
- * <p>Description: Random real demo.</p>
+ * <p>Random real demo.</p>
  *
  */
 public class RealRandomDemo{      

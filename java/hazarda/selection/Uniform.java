@@ -41,9 +41,7 @@ package hazarda.selection;
 import speco.jxon.JXON;
 
 /**
- * <p>Title: Uniform</p>
- *
- * <p>Description: Random partition of a set.</p>
+ * <p>Random uniform selection.</p>
  *
  */
 public class Uniform implements Selection{

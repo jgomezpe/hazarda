@@ -41,9 +41,7 @@ package hazarda.integer;
 import hazarda.real.RealRandom;
 
 /**
- * <p>Title: FromReal</p>
- *
- * <p>Description: Generates random integers by wrapping a Real number generator.</p>
+ * <p>Generates random integers by wrapping a Real number generator.</p>
  *
  */
 public class FromReal implements IntRandom{

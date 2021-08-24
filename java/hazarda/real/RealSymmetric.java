@@ -41,9 +41,7 @@ package hazarda.real;
 import hazarda.Hazarda;
 
 /**
- * <p>Title: RealSymmetric</p>
- *
- * <p>Description: Generates random real numbers by combining a one side real random number distribution (for the value) and
+ * <p>Generates random real numbers by combining a one side real random number distribution (for the value) and
  *  a boolean random distribution for the side.The one side distribution must be able to generate number in R+ = [0, inf)</p>
  *
  */

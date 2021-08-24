@@ -41,9 +41,7 @@ package hazarda.real;
 import hazarda.Hazarda;
 
 /**
- * <p>Title: Gaussian</p>
- *
- * <p>Description: Generates real numbers following a Gaussian distribution.</p>
+ * <p>Generates real numbers following a Gaussian distribution.</p>
  *
  */
 public class Gaussian implements RealRandom{

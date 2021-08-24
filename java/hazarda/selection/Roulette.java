@@ -43,9 +43,7 @@ import speco.jxon.JXON;
 import speco.real.RealUtil;
 
 /**
- * <p>Title: Partition</p>
- *
- * <p>Description: Random partition of a set.</p>
+ * <p>Random partition of a set.</p>
  *
  */
 public class Roulette implements Selection{
