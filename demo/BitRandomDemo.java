@@ -36,26 +36,34 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package test;
 
 import hazarda.Hazarda;
 
 /**
- * <p>Random integer demo.</p>
+ * <p>Random bit demo.</p>
  *
  */
-public class IntRandomDemo {
-	public static void main( String[] args ){
-		// Random g = uniform();
-		int n = 10;
-		// Generating an array of ten random values
-		for( int i=0; i<n; i++ ){
-			System.out.println( Hazarda.uniform(0,100) );
-		}
-		System.out.println("****************");
-		double[] p = new double[]{0.4,0.3,0.2,0.1}; //Roulette generation of  n integer numbers
-		for( int i=0; i<n; i++ ){
-			System.out.println( Hazarda.roulette(p) );
-		}		
+public class BitRandomDemo {
+    public static void main( String[] args ){
+	// false is generated with probability 0.7
+	// true is generated with probability 0.3
+	int n = 100;
+	// Generating an array of ten random values
+	int count = 0;
+	for( int i=0; i<n; i++ ) {
+	    boolean b = Hazarda.bool(0.7);
+	    System.out.println(b);
+	    if(b) count++;
 	}
+	System.out.println(count);
+	System.out.println("****************");
+	count = 0;
+	// Generating ten random values (equal probability)
+	for( int i=0; i<n; i++ ){
+	    boolean b = Hazarda.bool();
+	    System.out.println(b);
+	    if(b) count++;
+	}		
+	System.out.println(count);
+    }
 }

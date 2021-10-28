@@ -39,7 +39,7 @@
 package hazarda.selection;
 
 import hazarda.Hazarda;
-import speco.jxon.JXON;
+import speco.json.JSON;
 
 /**
  * <p>A tournament selection mechanism.</p>
@@ -108,9 +108,9 @@ public class Tournament implements Selection{
 	}
 
 	/**
-	 * Configures the selection according to the JXON information
-	 * @param jxon Configuration information
+	 * Configures the selection according to the JSON information
+	 * @param json Configuration information
 	 */
 	@Override
-	public void config(JXON jxon) { m=jxon.integer(SIZE, 4); }
+	public void config(JSON json) { m=json.integer(SIZE, 4); }
 }

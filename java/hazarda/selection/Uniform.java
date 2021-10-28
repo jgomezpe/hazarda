@@ -38,7 +38,7 @@
  */
 package hazarda.selection;
 
-import speco.jxon.JXON;
+import speco.json.JSON;
 
 /**
  * <p>Random uniform selection.</p>
@@ -67,9 +67,9 @@ public class Uniform implements Selection{
 	public int[] reversed(int n, double[] q) { return natural(n,q); }
 
 	/**
-	 * Configures the selection according to the JXON information
-	 * @param jxon Configuration information
+	 * Configures the selection according to the JSON information
+	 * @param json Configuration information
 	 */
 	@Override
-	public void config(JXON jxon) {}	  
+	public void config(JSON json) {}	  
 }

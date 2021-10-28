@@ -39,7 +39,7 @@
 package hazarda.selection;
 
 import hazarda.integer.Roulette;
-import speco.jxon.JXON;
+import speco.json.JSON;
 import kompari.real.RealH2LOrder;
 import kompari.real.RealL2HOrder;
 import kompari.real.RealOrder;
@@ -135,12 +135,12 @@ public class Elitism implements Selection{
 	public int[] reversed(int n, double[] q) { return apply(n, q, new RealL2HOrder()); }
  
 	/**
-	 * Configures the selection according to the JXON information
-	 * @param jxon Configuration information
+	 * Configures the selection according to the JSON information
+	 * @param json Configuration information
 	 */
 	@Override
-	public void config(JXON jxon) {
-		cull_percentage=jxon.real(CULL,0.0); 
-		elite_percentage=jxon.real(ELITE, 0.1);
+	public void config(JSON json) {
+		cull_percentage=json.real(CULL,0.0); 
+		elite_percentage=json.real(ELITE, 0.1);
 	}
 }

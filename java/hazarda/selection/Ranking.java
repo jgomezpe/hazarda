@@ -38,7 +38,7 @@
  */
 package hazarda.selection;
 
-import speco.jxon.JXON;
+import speco.json.JSON;
 import kompari.real.RealOrder;
 import kompari.real.RealH2LOrder;
 import kompari.real.RealL2HOrder;
@@ -101,9 +101,9 @@ public class Ranking implements Selection {
 	}
 
 	/**
-	 * Configures the selection according to the JXON information
-	 * @param jxon Configuration information
+	 * Configures the selection according to the JSON information
+	 * @param json Configuration information
 	 */
 	@Override
-	public void config(JXON jxon) {}	  
+	public void config(JSON json) {}	  
 }

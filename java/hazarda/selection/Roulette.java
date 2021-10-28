@@ -39,7 +39,7 @@
 package hazarda.selection;
 
 import hazarda.Hazarda;
-import speco.jxon.JXON;
+import speco.json.JSON;
 import speco.real.RealUtil;
 
 /**
@@ -153,9 +153,9 @@ public class Roulette implements Selection{
 	}
 
 	/**
-	 * Configures the selection according to the JXON information
-	 * @param jxon Configuration information
+	 * Configures the selection according to the JSON information
+	 * @param json Configuration information
 	 */
 	@Override
-	public void config(JXON jxon) {}
+	public void config(JSON json) {}
 }
